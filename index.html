@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Transcription Portfolio – Group A</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:#E63946;--blue:#1D3557;--cyan:#00B4D8;
+    --yellow:#FFD60A;--green:#06D6A0;--white:#F8F9FA;
+    --dark:#0D1B2A;--q1:#E63946;--q2:#00B4D8;--q3:#06D6A0;--q4:#FFD60A;--purple:#9B5DE5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(13,27,42,0.96);backdrop-filter:blur(12px);border-bottom:2px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:58px}
+  .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:3px;color:var(--cyan)}
+  .nav-logo span{color:var(--red)}
+  .nav-links{display:flex;gap:4px;list-style:none;flex-wrap:wrap}
+  .nav-links a{color:rgba(248,249,250,0.75);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:5px 9px;border-radius:3px;transition:all 0.2s}
+  .nav-links a:hover{color:var(--cyan);background:rgba(0,180,216,0.1)}
+  .nav-dropdown{position:relative}
+  .nav-dropdown>a::after{content:' ▾';font-size:0.58rem}
+  .dropdown-menu{display:none;position:absolute;top:100%;left:0;background:rgba(13,27,42,0.99);border:1px solid rgba(0,180,216,0.3);border-radius:4px;min-width:230px;padding:8px 0;z-index:300}
+  .nav-dropdown:hover .dropdown-menu{display:block}
+  .dropdown-menu a{display:block;padding:8px 16px;font-size:0.72rem;color:rgba(248,249,250,0.7);letter-spacing:1px;text-transform:uppercase}
+  .dropdown-menu a:hover{color:var(--cyan);background:rgba(0,180,216,0.08)}
+
+  #home{display:flex;align-items:center;justify-content:center;position:relative;padding:108px 40px 76px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--dark) 0%,#0a2342 50%,#0d1b2a 100%)}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,180,216,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,216,0.07) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite}
+  @keyframes gridMove{0%{background-position:0 0}100%{background-position:60px 60px}}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.14;animation:float 8s ease-in-out infinite}
+  .blob-1{width:400px;height:400px;background:var(--cyan);top:-100px;right:-80px}
+  .blob-2{width:300px;height:300px;background:var(--red);bottom:0;left:-60px;animation-delay:-3s}
+  .blob-3{width:250px;height:250px;background:var(--green);top:40%;left:40%;animation-delay:-5s}
+  @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+  .hero-content{position:relative;z-index:2;text-align:center;max-width:860px}
+  .hero-badge{display:inline-block;background:var(--cyan);color:var(--dark);font-family:'Space Mono',monospace;font-size:0.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:5px 16px;border-radius:2px;margin-bottom:22px;animation:fadeUp 0.6s ease both}
+  .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,9vw,7rem);line-height:0.95;letter-spacing:2px;animation:fadeUp 0.6s 0.15s ease both}
+  .hero-title .accent{color:var(--cyan)}
+  .hero-title .accent-red{color:var(--red)}
+  .hero-sub{font-size:0.98rem;font-weight:300;color:rgba(248,249,250,0.6);margin-top:16px;line-height:1.7;animation:fadeUp 0.6s 0.3s ease both}
+  .hero-cta{display:inline-flex;gap:12px;margin-top:32px;flex-wrap:wrap;justify-content:center;animation:fadeUp 0.6s 0.45s ease both}
+  .btn{padding:11px 26px;border-radius:3px;font-family:'Space Mono',monospace;font-size:0.76rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;border:2px solid transparent}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.3)}
+  .btn-primary{background:var(--cyan);color:var(--dark)}
+  .btn-outline{background:transparent;border-color:var(--white);color:var(--white)}
+  .btn-outline:hover{background:var(--white);color:var(--dark)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+  .stats-bar{display:flex;justify-content:center;background:var(--blue);flex-wrap:wrap;border-top:3px solid var(--cyan);border-bottom:3px solid var(--cyan)}
+  .stat-item{flex:1;min-width:140px;padding:20px 14px;text-align:center;border-right:1px solid rgba(255,255,255,0.1);transition:background 0.3s;text-decoration:none;color:inherit;display:block}
+  .stat-item:last-child{border-right:none}
+  .stat-item:hover{background:rgba(255,255,255,0.05)}
+  .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;line-height:1}
+  .stat-item:nth-child(1) .stat-num{color:var(--q1)}.stat-item:nth-child(2) .stat-num{color:var(--q2)}.stat-item:nth-child(3) .stat-num{color:var(--q3)}.stat-item:nth-child(4) .stat-num{color:var(--q4)}
+  .stat-label{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;opacity:0.55;margin-top:3px}
+
+  section{padding:76px 40px}
+  .section-header{text-align:center;margin-bottom:52px}
+  .section-tag{font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:10px}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:2px;line-height:1}
+  .section-desc{color:rgba(248,249,250,0.6);margin-top:10px;font-size:0.93rem;line-height:1.7;max-width:680px;margin-inline:auto}
+
+  #about{background:#0f2235}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;max-width:1100px;margin:0 auto;align-items:start}
+  .about-visual{position:relative;height:340px;border:2px solid var(--cyan);border-radius:6px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .about-visual-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,180,216,0.1),rgba(230,57,70,0.1))}
+  .about-icon{font-size:96px;position:relative;z-index:1;animation:pulse 3s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .about-corner{position:absolute;width:38px;height:38px;border:3px solid var(--cyan);opacity:0.5}
+  .about-corner.tl{top:10px;left:10px;border-right:none;border-bottom:none}
+  .about-corner.br{bottom:10px;right:10px;border-left:none;border-top:none}
+  .about-text h3{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:2px;color:var(--cyan);margin-bottom:12px}
+  .about-text p{color:rgba(248,249,250,0.7);line-height:1.8;margin-bottom:12px;font-size:0.93rem}
+  .info-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+  .info-icon{font-size:1.1rem;min-width:24px}
+  .info-label{font-size:0.68rem;opacity:0.4;letter-spacing:1px;text-transform:uppercase}
+  .info-val{font-size:0.88rem;font-weight:500}
+  .member-section{margin-top:18px}
+  .role-label{font-family:'Space Mono',monospace;font-size:0.66rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:9px}
+  .leader-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+  .role-badge{font-size:0.6rem;font-family:'Space Mono',monospace;padding:3px 8px;border-radius:2px;white-space:nowrap;font-weight:700}
+  .badge-leader{background:var(--cyan);color:var(--dark)}
+  .badge-asst{background:var(--red);color:white}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .tag{padding:4px 11px;border-radius:2px;font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:1px;background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.32);color:var(--cyan)}
+
+  #overview{background:var(--dark)}
+  .overview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;max-width:1100px;margin:0 auto}
+  .overview-card{padding:24px 20px;border-radius:6px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);transition:transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
+  .overview-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .ov-q1::before{background:var(--q1)}.ov-q2::before{background:var(--q2)}.ov-q3::before{background:var(--q3)}.ov-q4::before{background:var(--q4)}.ov-anat::before{background:var(--purple)}
+  .overview-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,0.3)}
+  .ov-icon{font-size:2rem;margin-bottom:10px}
+  .ov-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1.5px;margin-bottom:7px}
+  .ov-q1 .ov-title{color:var(--q1)}.ov-q2 .ov-title{color:var(--q2)}.ov-q3 .ov-title{color:var(--q3)}.ov-q4 .ov-title{color:var(--q4)}.ov-anat .ov-title{color:var(--purple)}
+  .ov-desc{font-size:0.8rem;color:rgba(248,249,250,0.58);line-height:1.6}
+
+  .quarter-section{padding:76px 40px}
+  .quarter-section:nth-child(odd){background:var(--dark)}.quarter-section:nth-child(even){background:#0f2235}
+  .quarter-header{display:flex;align-items:center;gap:20px;max-width:1100px;margin:0 auto 40px}
+  .quarter-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;min-width:64px;text-align:center}
+  .quarter-divider{width:3px;height:64px;background:currentColor;opacity:0.5}
+  .quarter-meta{flex:1}
+  .quarter-meta .q-label{font-family:'Space Mono',monospace;font-size:0.66rem;letter-spacing:3px;text-transform:uppercase;opacity:0.45;margin-bottom:4px}
+  .quarter-meta h2{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:2px}
+  .quarter-meta .q-desc{font-size:0.85rem;opacity:0.52;margin-top:4px;line-height:1.5}
+  .q1-accent{color:var(--q1)}.q2-accent{color:var(--q2)}.q3-accent{color:var(--q3)}.q4-accent{color:var(--q4)}.anat-accent{color:var(--purple)}
+  .quarter-border-q1{border-left:4px solid var(--q1);padding-left:18px}
+  .quarter-border-q2{border-left:4px solid var(--q2);padding-left:18px}
+  .quarter-border-q3{border-left:4px solid var(--q3);padding-left:18px}
+  .quarter-border-q4{border-left:4px solid var(--q4);padding-left:18px}
+  .quarter-border-anat{border-left:4px solid var(--purple);padding-left:18px}
+
+  .lessons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;max-width:1100px;margin:0 auto}
+  .subtopic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px;max-width:1100px;margin:0 auto}
+  .lesson-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:22px;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
+  .lesson-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .q1 .lesson-card::before{background:var(--q1)}.q2 .lesson-card::before{background:var(--q2)}.q3 .lesson-card::before{background:var(--q3)}.q4 .lesson-card::before{background:var(--q4)}.anat-sec .lesson-card::before{background:var(--purple)}
+  .lesson-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,0.3)}
+  .q1 .lesson-card:hover{border-color:rgba(230,57,70,0.35)}.q2 .lesson-card:hover{border-color:rgba(0,180,216,0.35)}.q3 .lesson-card:hover{border-color:rgba(6,214,160,0.35)}.q4 .lesson-card:hover{border-color:rgba(255,214,10,0.35)}.anat-sec .lesson-card:hover{border-color:rgba(155,93,229,0.35)}
+  .lesson-num{font-family:'Space Mono',monospace;font-size:0.63rem;letter-spacing:2px;opacity:0.32;margin-bottom:7px}
+  .lesson-title{font-family:'Bebas Neue',sans-serif;font-size:1.18rem;letter-spacing:1.5px;margin-bottom:9px;line-height:1.2}
+  .lesson-body{font-size:0.84rem;color:rgba(248,249,250,0.64);line-height:1.75}
+  .lesson-body ul{padding-left:16px;margin-top:5px}
+  .lesson-body ul li{margin-bottom:4px}
+  .lesson-body strong{color:rgba(248,249,250,0.88)}
+
+  .anat-sec{background:#0a1929}
+  .system-card{background:rgba(155,93,229,0.07);border:1px solid rgba(155,93,229,0.18);border-radius:8px;padding:28px;margin-bottom:20px;max-width:1100px;margin-inline:auto}
+  .system-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--purple);margin-bottom:12px}
+  .system-body{font-size:0.86rem;color:rgba(248,249,250,0.68);line-height:1.8}
+  .system-body h4{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin:14px 0 7px}
+  .system-body ul{padding-left:18px}
+  .system-body ul li{margin-bottom:5px}
+
+  #contact{background:#0a1929}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;max-width:1000px;margin:0 auto;align-items:start}
+  .contact-info h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--cyan);margin-bottom:12px}
+  .contact-info p{color:rgba(248,249,250,0.6);line-height:1.8;margin-bottom:18px}
+  .contact-row{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+  .contact-icon{font-size:1.1rem;min-width:24px}
+  .contact-label{font-size:0.68rem;opacity:0.4;letter-spacing:1px;text-transform:uppercase}
+  .contact-val{font-size:0.88rem;font-weight:500}
+  .contact-form{display:flex;flex-direction:column;gap:14px}
+  .form-field{display:flex;flex-direction:column;gap:5px}
+  .form-field label{font-family:'Space Mono',monospace;font-size:0.66rem;letter-spacing:2px;text-transform:uppercase;color:rgba(248,249,250,0.42)}
+  .form-field input,.form-field textarea{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.11);border-radius:3px;padding:10px 13px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;resize:vertical}
+  .form-field input:focus,.form-field textarea:focus{border-color:var(--cyan)}
+  .form-field textarea{min-height:88px}
+  .submit-btn{background:var(--cyan);color:var(--dark);border:none;padding:12px 26px;border-radius:3px;font-family:'Space Mono',monospace;font-size:0.76rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;align-self:flex-start}
+  .submit-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,180,216,0.3)}
+
+  footer{background:var(--dark);border-top:2px solid rgba(0,180,216,0.22);padding:26px 40px;text-align:center}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;color:var(--cyan);margin-bottom:5px}
+  .footer-sub{font-size:0.75rem;opacity:0.28;letter-spacing:1px}
+
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  @media(max-width:768px){
+    nav{padding:0 14px}.nav-links{gap:2px}
+    .about-grid,.contact-grid{grid-template-columns:1fr}
+    .about-visual{height:190px}
+    section,.quarter-section{padding:56px 18px}
+    .quarter-num{font-size:2.8rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">MED<span>TRANS</span></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li class="nav-dropdown">
+      <a href="#lessons">Quarters</a>
+      <div class="dropdown-menu">
+        <a href="#q1">Q1 – Foundation &amp; OHS</a>
+        <a href="#q2">Q2 – Human Anatomy</a>
+        <a href="#q3">Q3 – Medical Terminology</a>
+        <a href="#q4">Q4 – Clinical Application</a>
+      </div>
+    </li>
+    <li><a href="#anatomy">Anatomy &amp; Physiology</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+  <div class="hero-content">
+    <div class="hero-badge">📋 Academic Portfolio · SY 2025–2026</div>
+    <h1 class="hero-title">Medical<br><span class="accent">Trans</span><span class="accent-red">cription</span></h1>
+    <p class="hero-sub">A complete portfolio of lessons in <strong>Medical Transcription NC II</strong> from Quarter 1 through Quarter 4<br>Angelo Levardo Loyola Senior High School · Group A</p>
+    <div class="hero-cta">
+      <a href="#overview" class="btn btn-primary">Explore Lessons</a>
+      <a href="#about" class="btn btn-outline">About Our Group</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <a href="#q1" class="stat-item"><div class="stat-num">Q1</div><div class="stat-label">Foundation &amp; OHS</div></a>
+  <a href="#q2" class="stat-item"><div class="stat-num">Q2</div><div class="stat-label">Human Anatomy</div></a>
+  <a href="#q3" class="stat-item"><div class="stat-num">Q3</div><div class="stat-label">Medical Terminology</div></a>
+  <a href="#q4" class="stat-item"><div class="stat-num">Q4</div><div class="stat-label">Clinical Application</div></a>
+</div>
+
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-tag">Who We Are</span>
+    <h2 class="section-title">About Group A</h2>
+    <p class="section-desc">Meet the team behind this Medical Transcription portfolio.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-visual-bg"></div>
+      <div class="about-icon">🩺</div>
+      <div class="about-corner tl"></div><div class="about-corner br"></div>
+    </div>
+    <div class="about-text reveal">
+      <h3>Group A</h3>
+      <p>We are Group A from Angelo Levardo Loyola Senior High School. This portfolio documents our complete learning journey in Medical Transcription NC II for School Year 2025–2026, covering all lessons from Quarter 1 to Quarter 4 including Human Anatomy and Physiology.</p>
+      <div class="info-row"><div class="info-icon">🏫</div><div><div class="info-label">School</div><div class="info-val">Angelo Levardo Loyola Senior High School</div></div></div>
+      <div class="info-row"><div class="info-icon">📚</div><div><div class="info-label">Subject</div><div class="info-val">Medical Transcription NC II</div></div></div>
+      <div class="info-row"><div class="info-icon">👩‍🏫</div><div><div class="info-label">Instructor</div><div class="info-val">Roderick M. Mundoc</div></div></div>
+      <div class="info-row"><div class="info-icon">📅</div><div><div class="info-label">School Year</div><div class="info-val">2025 – 2026</div></div></div>
+      <div class="member-section">
+        <div class="role-label">Group Leadership</div>
+        <div class="leader-row"><span class="role-badge badge-leader">LEADER</span><span>Rudinas, Clyde Dexter C.</span></div>
+        <div class="leader-row"><span class="role-badge badge-asst">ASST. LEADER</span><span>Baldovino, Gio Polo</span></div>
+        <div class="role-label" style="margin-top:14px">Members (Alphabetical)</div>
+        <div class="tag-row">
+          <span class="tag">Balentoza, Charles William</span>
+          <span class="tag">Bernardo, Enrico Jacob</span>
+          <span class="tag">Briones, Andrea</span>
+          <span class="tag">Catangay, Jayzzi Aliyah</span>
+          <span class="tag">De Guzman, Rain</span>
+          <span class="tag">Martinez, Paul</span>
+          <span class="tag">Nealega, Crystal Faith</span>
+          <span class="tag">Perez, Robert Angelo</span>
+          <span class="tag">Zerrudo, Lavigne</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="overview">
+  <div class="section-header reveal">
+    <span class="section-tag">Program Structure</span>
+    <h2 class="section-title">Course Overview</h2>
+    <p class="section-desc">Medical Transcription NC II is a four-quarter program that develops students into competent healthcare documentation professionals, integrating medical knowledge with information and communication technology.</p>
+  </div>
+  <div class="overview-grid reveal">
+    <div class="overview-card ov-q1"><div class="ov-icon">🦺</div><div class="ov-title">Quarter 1</div><div class="ov-desc">Foundation &amp; Workplace Safety — OHS principles, ethical standards, tools, hardware, and proper workstation setup.</div></div>
+    <div class="overview-card ov-q2"><div class="ov-icon">🫀</div><div class="ov-title">Quarter 2</div><div class="ov-desc">Human Anatomy &amp; Body Systems — Structure and functions of the human body for accurate transcription.</div></div>
+    <div class="overview-card ov-q3"><div class="ov-icon">📖</div><div class="ov-title">Quarter 3</div><div class="ov-desc">Medical Terminology — Roots, prefixes, and suffixes to precisely interpret and transcribe medical vocabulary.</div></div>
+    <div class="overview-card ov-q4"><div class="ov-icon">🎧</div><div class="ov-title">Quarter 4</div><div class="ov-desc">Clinical Application &amp; Audio Transcription — Transcribing physician recordings into professionally formatted reports.</div></div>
+    <div class="overview-card ov-anat"><div class="ov-icon">🧬</div><div class="ov-title">Anatomy &amp; Physiology</div><div class="ov-desc">In-depth study of the Muscular, Digestive, and Lymphatic Systems for medical documentation accuracy.</div></div>
+  </div>
+</section>
+
+<div id="lessons">
+
+<!-- Q1 -->
+<div id="q1" class="quarter-section q1">
+  <div class="quarter-header quarter-border-q1">
+    <div class="quarter-num q1-accent">01</div>
+    <div class="quarter-divider q1-accent"></div>
+    <div class="quarter-meta">
+      <div class="q-label">Quarter One</div>
+      <h2 class="q1-accent">Foundation &amp; Workplace Safety</h2>
+      <p class="q-desc">OHS principles, ethical standards, transcription tools, hardware, and ergonomic workstation setup.</p>
+    </div>
+  </div>
+  <div class="lessons-grid">
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 01</div>
+      <div class="lesson-title">Introduction to Medical Transcription</div>
+      <div class="lesson-body">
+        Medical Transcription (MT) is the process of converting voice-recorded medical reports dictated by physicians and healthcare professionals into accurate text format. It is a critical component of healthcare documentation.<br><br>
+        <strong>Key Points:</strong>
+        <ul>
+          <li>MT bridges oral communication and written medical records</li>
+          <li>Transcriptionists work in hospitals, clinics, and BPO companies</li>
+          <li>NC II qualification prepares students for national certification (TESDA)</li>
+          <li>The field demands accuracy, confidentiality, speed, and medical knowledge</li>
+          <li>Output documents include: H&amp;P reports, operative notes, discharge summaries, and consultation letters</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 02</div>
+      <div class="lesson-title">Occupational Health &amp; Safety (OHS)</div>
+      <div class="lesson-body">
+        OHS in medical transcription protects transcriptionists from workplace hazards including ergonomic injuries, eye strain, and repetitive stress disorders.<br><br>
+        <strong>OHS Principles:</strong>
+        <ul>
+          <li>Proper posture and ergonomic workstation setup</li>
+          <li>Regular breaks to prevent Repetitive Strain Injury (RSI)</li>
+          <li>Adequate lighting to reduce eye fatigue</li>
+          <li>Compliance with RA 11058 – Occupational Safety and Health Standards Act</li>
+          <li>Reporting of accidents, near-misses, and workplace hazards</li>
+          <li>Use of PPE where applicable</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 03</div>
+      <div class="lesson-title">Ethical Standards in Medical Transcription</div>
+      <div class="lesson-body">
+        Transcriptionists handle sensitive patient data and must follow strict ethical and legal standards.<br><br>
+        <strong>Core Ethical Principles:</strong>
+        <ul>
+          <li><strong>Confidentiality</strong> – Patient records must never be disclosed without authorization</li>
+          <li><strong>Accuracy</strong> – Every word must be transcribed as dictated</li>
+          <li><strong>Integrity</strong> – No fabrication, alteration, or omission of medical data</li>
+          <li><strong>HIPAA</strong> – Health Insurance Portability and Accountability Act (US standard)</li>
+          <li><strong>RA 10173</strong> – Data Privacy Act of the Philippines</li>
+          <li><strong>Code of Ethics</strong> – AHDI (Association for Healthcare Documentation Integrity)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 04</div>
+      <div class="lesson-title">Transcription Tools &amp; Hardware</div>
+      <div class="lesson-body">
+        Medical transcriptionists rely on specific tools and hardware to perform their work efficiently.<br><br>
+        <strong>Essential Tools:</strong>
+        <ul>
+          <li><strong>Foot Pedal</strong> – Controls audio playback hands-free (play, pause, rewind)</li>
+          <li><strong>Headset/Headphones</strong> – For clear audio reception with noise cancellation</li>
+          <li><strong>Computer/Laptop</strong> – Primary work device with sufficient processing speed</li>
+          <li><strong>Transcription Software</strong> – Express Scribe, InScribe, oTranscribe, nVoq</li>
+          <li><strong>Word Processor</strong> – MS Word for document creation and formatting</li>
+          <li><strong>Medical Spellchecker</strong> – Specialized dictionaries for medical terms</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 05</div>
+      <div class="lesson-title">Workstation Setup &amp; Ergonomics</div>
+      <div class="lesson-body">
+        A properly configured workstation minimizes physical strain and maximizes productivity during long transcription sessions.<br><br>
+        <strong>Ergonomic Guidelines:</strong>
+        <ul>
+          <li>Monitor at eye level, approximately 50–60 cm from face</li>
+          <li>Chair adjusted so feet are flat on the floor, knees at 90°</li>
+          <li>Wrists straight, forearms parallel to the floor while typing</li>
+          <li>Keyboard and mouse within easy reach, no awkward stretching</li>
+          <li>Room temperature 20–24°C for comfort and concentration</li>
+          <li>Take a 5-minute break every hour — stretch, rest eyes (20-20-20 rule)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 06</div>
+      <div class="lesson-title">Transcription Software &amp; File Formats</div>
+      <div class="lesson-body">
+        Understanding audio and document formats is essential for handling various transcription assignments.<br><br>
+        <strong>Common Audio Formats:</strong>
+        <ul><li>MP3, WAV, DSS, DS2, WMA, FLAC</li></ul>
+        <strong>Document Output Formats:</strong>
+        <ul><li>DOCX (MS Word), PDF, RTF, TXT</li></ul>
+        <strong>Key Software Features:</strong>
+        <ul>
+          <li>Variable speed playback (slow down dictation without pitch change)</li>
+          <li>Foot pedal integration and keyboard shortcuts</li>
+          <li>Auto-correct and medical word expanders</li>
+          <li>Timestamp and blank flagging tools</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div id="q2" class="quarter-section q2">
+  <div class="quarter-header quarter-border-q2">
+    <div class="quarter-num q2-accent">02</div>
+    <div class="quarter-divider q2-accent"></div>
+    <div class="quarter-meta">
+      <div class="q-label">Quarter Two</div>
+      <h2 class="q2-accent">Human Anatomy &amp; Body Systems</h2>
+      <p class="q-desc">Structure and functions of the human body — essential foundation for accurate medical transcription.</p>
+    </div>
+  </div>
+  <div class="lessons-grid">
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 01</div>
+      <div class="lesson-title">Overview of Human Body Organization</div>
+      <div class="lesson-body">
+        The human body is organized into levels: cells → tissues → organs → organ systems → organism.<br><br>
+        <strong>Body Cavities:</strong>
+        <ul>
+          <li><strong>Cranial</strong> – houses the brain</li>
+          <li><strong>Thoracic</strong> – contains heart and lungs</li>
+          <li><strong>Abdominal</strong> – contains digestive organs</li>
+          <li><strong>Pelvic</strong> – contains reproductive and urinary organs</li>
+        </ul>
+        <strong>Anatomical Planes:</strong>
+        <ul>
+          <li>Sagittal (left/right), Coronal/Frontal (front/back), Transverse (top/bottom)</li>
+        </ul>
+        <strong>Directional Terms:</strong> anterior/posterior, superior/inferior, medial/lateral, proximal/distal
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 02</div>
+      <div class="lesson-title">Cardiovascular System</div>
+      <div class="lesson-body">
+        The cardiovascular system circulates blood throughout the body, delivering oxygen and nutrients while removing waste.<br><br>
+        <strong>Key Structures:</strong>
+        <ul>
+          <li><strong>Heart</strong> – 4 chambers: right/left atrium, right/left ventricle</li>
+          <li><strong>Arteries</strong> – carry oxygenated blood away from the heart</li>
+          <li><strong>Veins</strong> – carry deoxygenated blood back to the heart</li>
+          <li><strong>Capillaries</strong> – microscopic vessels for gas/nutrient exchange</li>
+        </ul>
+        <strong>Transcription Terms:</strong> myocardial infarction (MI), arrhythmia, hypertension, atherosclerosis, ECG/EKG, angina pectoris, CHF
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 03</div>
+      <div class="lesson-title">Respiratory System</div>
+      <div class="lesson-body">
+        The respiratory system facilitates gas exchange — delivering oxygen to the blood and expelling carbon dioxide.<br><br>
+        <strong>Key Structures (in order of airflow):</strong>
+        <ul>
+          <li>Nasal cavity → Pharynx → Larynx → Trachea</li>
+          <li>Bronchi → Bronchioles → Alveoli</li>
+          <li>Lungs (left: 2 lobes; right: 3 lobes)</li>
+          <li>Diaphragm – primary muscle of respiration</li>
+        </ul>
+        <strong>Transcription Terms:</strong> pneumonia, asthma, COPD, dyspnea, tachypnea, apnea, spirometry, TB, pleurisy
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 04</div>
+      <div class="lesson-title">Skeletal System</div>
+      <div class="lesson-body">
+        The skeletal system provides structural support, protects internal organs, produces blood cells, and stores minerals.<br><br>
+        <strong>Key Facts:</strong>
+        <ul>
+          <li>206 bones in the adult human body</li>
+          <li><strong>Axial skeleton</strong> – skull, vertebral column (33 vertebrae), sternum, ribs (24)</li>
+          <li><strong>Appendicular skeleton</strong> – limbs, shoulder girdle, pelvic girdle</li>
+          <li>Joints: fibrous, cartilaginous, synovial (most movable)</li>
+        </ul>
+        <strong>Transcription Terms:</strong> fracture, osteoporosis, osteoarthritis, scoliosis, lordosis, kyphosis, arthroscopy, ORIF
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 05</div>
+      <div class="lesson-title">Nervous &amp; Endocrine Systems</div>
+      <div class="lesson-body">
+        The nervous system coordinates body activities through electrical signals; the endocrine system uses hormones for regulation.<br><br>
+        <strong>Nervous System Divisions:</strong>
+        <ul>
+          <li>CNS: Brain (cerebrum, cerebellum, brainstem) and spinal cord</li>
+          <li>PNS: Cranial nerves (12 pairs), spinal nerves (31 pairs)</li>
+          <li>ANS: Sympathetic (fight-or-flight) and parasympathetic (rest-and-digest)</li>
+        </ul>
+        <strong>Endocrine Glands:</strong>
+        <ul>
+          <li>Pituitary (master gland), thyroid, parathyroid, adrenal, pancreas, gonads, pineal</li>
+        </ul>
+        <strong>Terms:</strong> stroke (CVA), TIA, epilepsy, neuropathy, diabetes mellitus, hypothyroidism, Cushing's syndrome
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 06</div>
+      <div class="lesson-title">Urinary &amp; Reproductive Systems</div>
+      <div class="lesson-body">
+        The urinary system filters blood and excretes waste. The reproductive system enables human reproduction.<br><br>
+        <strong>Urinary System:</strong>
+        <ul>
+          <li>Kidneys (2), ureters (2), urinary bladder, urethra</li>
+          <li>Nephron – functional unit of the kidney; filters blood to produce urine</li>
+          <li>GFR (Glomerular Filtration Rate) – key kidney function indicator</li>
+        </ul>
+        <strong>Reproductive System:</strong>
+        <ul>
+          <li>Male: testes, epididymis, vas deferens, prostate, seminal vesicles</li>
+          <li>Female: ovaries, fallopian tubes, uterus, cervix, vagina</li>
+        </ul>
+        <strong>Terms:</strong> UTI, cystitis, nephrolithiasis, urinalysis, gynecology, obstetrics, gravida, para, menstruation
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div id="q3" class="quarter-section q3">
+  <div class="quarter-header quarter-border-q3">
+    <div class="quarter-num q3-accent">03</div>
+    <div class="quarter-divider q3-accent"></div>
+    <div class="quarter-meta">
+      <div class="q-label">Quarter Three</div>
+      <h2 class="q3-accent">Medical Terminology</h2>
+      <p class="q-desc">Mastering Greek and Latin roots, prefixes, and suffixes to interpret and transcribe medical vocabulary with precision.</p>
+    </div>
+  </div>
+  <div class="lessons-grid">
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 01</div>
+      <div class="lesson-title">Word Roots &amp; Combining Forms</div>
+      <div class="lesson-body">
+        Medical terms are built from Greek and Latin word roots. A combining form adds a vowel (usually "o") to connect parts.<br><br>
+        <strong>Common Roots:</strong>
+        <ul>
+          <li><strong>cardi/o</strong> – heart &nbsp;|&nbsp; <strong>hepat/o</strong> – liver</li>
+          <li><strong>nephr/o</strong> – kidney &nbsp;|&nbsp; <strong>oste/o</strong> – bone</li>
+          <li><strong>derm/o</strong> – skin &nbsp;|&nbsp; <strong>gastr/o</strong> – stomach</li>
+          <li><strong>pneum/o</strong> – lung/air &nbsp;|&nbsp; <strong>neur/o</strong> – nerve</li>
+          <li><strong>hem/o</strong> – blood &nbsp;|&nbsp; <strong>arthr/o</strong> – joint</li>
+          <li><strong>rhin/o</strong> – nose &nbsp;|&nbsp; <strong>ophthalm/o</strong> – eye</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 02</div>
+      <div class="lesson-title">Medical Prefixes</div>
+      <div class="lesson-body">
+        Prefixes modify the meaning of a word by appearing at its beginning.<br><br>
+        <strong>Common Prefixes:</strong>
+        <ul>
+          <li><strong>a-/an-</strong> – without (anemia, apnea)</li>
+          <li><strong>brady-</strong> – slow (bradycardia)</li>
+          <li><strong>tachy-</strong> – fast (tachycardia, tachypnea)</li>
+          <li><strong>hyper-</strong> – excessive (hypertension, hyperglycemia)</li>
+          <li><strong>hypo-</strong> – deficient (hypoglycemia, hypotension)</li>
+          <li><strong>peri-</strong> – around (pericardium, periosteum)</li>
+          <li><strong>poly-</strong> – many (polycystic, polydipsia)</li>
+          <li><strong>sub-</strong> – below (subcutaneous, sublingual)</li>
+          <li><strong>intra-</strong> – within (intravenous, intramuscular)</li>
+          <li><strong>inter-</strong> – between (intercostal, intervertebral)</li>
+          <li><strong>dys-</strong> – painful/difficult (dyspnea, dysuria)</li>
+          <li><strong>macro-/micro-</strong> – large/small (macrocyte, microscopy)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 03</div>
+      <div class="lesson-title">Medical Suffixes</div>
+      <div class="lesson-body">
+        Suffixes appear at the end of a word and often indicate a condition, procedure, or specialty.<br><br>
+        <strong>Common Suffixes:</strong>
+        <ul>
+          <li><strong>-itis</strong> – inflammation (appendicitis, tonsillitis)</li>
+          <li><strong>-ectomy</strong> – surgical removal (appendectomy, cholecystectomy)</li>
+          <li><strong>-oscopy</strong> – visual examination (colonoscopy, bronchoscopy)</li>
+          <li><strong>-ology</strong> – study of (cardiology, neurology)</li>
+          <li><strong>-plasty</strong> – surgical repair (rhinoplasty, angioplasty)</li>
+          <li><strong>-algia</strong> – pain (neuralgia, myalgia)</li>
+          <li><strong>-emia</strong> – blood condition (anemia, septicemia)</li>
+          <li><strong>-oma</strong> – tumor/mass (carcinoma, melanoma)</li>
+          <li><strong>-pathy</strong> – disease (neuropathy, cardiomyopathy)</li>
+          <li><strong>-rrhea</strong> – flow/discharge (diarrhea, rhinorrhea)</li>
+          <li><strong>-stenosis</strong> – narrowing (aortic stenosis)</li>
+          <li><strong>-gram/-graphy</strong> – record/process of recording (cardiogram, radiography)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 04</div>
+      <div class="lesson-title">Medical Abbreviations &amp; Symbols</div>
+      <div class="lesson-body">
+        Medical abbreviations are widely used in dictations. Transcriptionists must know which to retain and which to spell out.<br><br>
+        <strong>Frequently Dictated Abbreviations:</strong>
+        <ul>
+          <li><strong>PRN</strong> – as needed &nbsp;|&nbsp; <strong>NPO</strong> – nothing by mouth</li>
+          <li><strong>Dx</strong> – diagnosis &nbsp;|&nbsp; <strong>Rx</strong> – prescription/treatment</li>
+          <li><strong>Sx</strong> – symptoms &nbsp;|&nbsp; <strong>Hx</strong> – history</li>
+          <li><strong>CC</strong> – chief complaint &nbsp;|&nbsp; <strong>SOB</strong> – shortness of breath</li>
+          <li><strong>BP</strong> – blood pressure &nbsp;|&nbsp; <strong>HR</strong> – heart rate</li>
+          <li><strong>BID</strong> – twice daily &nbsp;|&nbsp; <strong>TID</strong> – three times daily &nbsp;|&nbsp; <strong>QID</strong> – four times daily</li>
+          <li><strong>STAT</strong> – immediately &nbsp;|&nbsp; <strong>PO</strong> – by mouth (per os)</li>
+          <li><strong>OD/OS/OU</strong> – right eye/left eye/both eyes</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 05</div>
+      <div class="lesson-title">Body System Terminology by Specialty</div>
+      <div class="lesson-body">
+        Each medical specialty has its own vocabulary that transcriptionists must master.<br><br>
+        <strong>By Specialty:</strong>
+        <ul>
+          <li><strong>Cardiology</strong> – MI, CHF, angina, arrhythmia, echocardiography, catheterization</li>
+          <li><strong>Orthopedics</strong> – fracture, dislocation, arthroplasty, ORIF, bone density scan</li>
+          <li><strong>Gastroenterology</strong> – GERD, colitis, endoscopy, hepatitis, colonoscopy</li>
+          <li><strong>Neurology</strong> – CVA, TIA, seizure, dementia, EEG, lumbar puncture</li>
+          <li><strong>OB-GYN</strong> – gravida, para, trimester, Cesarean section, pelvimetry, Pap smear</li>
+          <li><strong>Pulmonology</strong> – COPD, asthma, TB, spirometry, bronchoscopy, PFT</li>
+          <li><strong>Oncology</strong> – metastasis, chemotherapy, radiotherapy, staging, biopsy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">LESSON 06</div>
+      <div class="lesson-title">Pharmaceutical Terminology</div>
+      <div class="lesson-body">
+        Transcriptionists frequently encounter medication names and must distinguish between similar-sounding drug names (sound-alikes).<br><br>
+        <strong>Drug Name Categories:</strong>
+        <ul>
+          <li><strong>Generic name</strong> – official chemical name (e.g., amoxicillin)</li>
+          <li><strong>Brand/Trade name</strong> – manufacturer's name (e.g., Amoxil) — always capitalized</li>
+        </ul>
+        <strong>Common Drug Classes:</strong>
+        <ul>
+          <li>Antibiotics: amoxicillin, azithromycin, ciprofloxacin, metronidazole</li>
+          <li>Antihypertensives: amlodipine, losartan, metoprolol, enalapril</li>
+          <li>Analgesics: paracetamol, ibuprofen, tramadol, morphine</li>
+          <li>Antidiabetics: metformin, insulin (Regular, NPH, Glargine), sitagliptin</li>
+          <li>Respiratory: salbutamol (Ventolin), budesonide, montelukast, theophylline</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div id="q4" class="quarter-section q4">
+  <div class="quarter-header quarter-border-q4">
+    <div class="quarter-num q4-accent">04</div>
+    <div class="quarter-divider q4-accent"></div>
+    <div class="quarter-meta">
+      <div class="q-label">Quarter Four</div>
+      <h2 class="q4-accent">Clinical Application &amp; Audio Transcription</h2>
+      <p class="q-desc">Applying all prior knowledge to transcribe real medical recordings and manage clinical documentation professionally.</p>
+    </div>
+  </div>
+  <div class="subtopic-grid">
+    <div class="lesson-card reveal">
+      <div class="lesson-num">TOPIC 01</div>
+      <div class="lesson-title">Common Medical Conditions</div>
+      <div class="lesson-body">
+        Transcriptionists must recognize common diagnoses when dictated rapidly by physicians.<br><br>
+        <strong>Cardiovascular:</strong> Hypertension, CAD, CHF, Atrial Fibrillation, DVT<br><br>
+        <strong>Respiratory:</strong> Asthma, COPD, Pneumonia, Tuberculosis (TB), Pleural Effusion<br><br>
+        <strong>Metabolic/Endocrine:</strong> Diabetes Mellitus Type 1 &amp; 2, Hyperthyroidism, Hypothyroidism, Gout<br><br>
+        <strong>Neurological:</strong> Stroke (CVA), Epilepsy, Parkinson's Disease, Alzheimer's Disease, Migraine<br><br>
+        <strong>Gastrointestinal:</strong> GERD, Peptic Ulcer Disease, Appendicitis, Cirrhosis, Crohn's Disease, IBS<br><br>
+        <strong>Musculoskeletal:</strong> Osteoporosis, Rheumatoid Arthritis, Fibromyalgia, Herniated Disc
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">TOPIC 02</div>
+      <div class="lesson-title">Common Medications</div>
+      <div class="lesson-body">
+        Accurate transcription of medication names, dosages, and routes of administration is critical for patient safety.<br><br>
+        <strong>Antibiotics:</strong> Amoxicillin, Azithromycin, Metronidazole, Cephalexin, Co-amoxiclav<br><br>
+        <strong>Cardiovascular:</strong> Amlodipine, Atorvastatin, Metoprolol, Warfarin, Aspirin, Digoxin<br><br>
+        <strong>Analgesics:</strong> Paracetamol (Biogesic), Ibuprofen, Tramadol, Morphine Sulfate, Ketorolac<br><br>
+        <strong>Antidiabetics:</strong> Metformin, Insulin (Regular, NPH, Glargine), Glipizide, Sitagliptin<br><br>
+        <strong>Respiratory:</strong> Salbutamol, Budesonide, Montelukast, Ipratropium, N-Acetylcysteine<br><br>
+        <strong>Routes of Administration:</strong> PO (oral), IV (intravenous), IM (intramuscular), SC (subcutaneous), SL (sublingual), TOP (topical)
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">TOPIC 03</div>
+      <div class="lesson-title">Common Medical Procedures &amp; Equipment</div>
+      <div class="lesson-body">
+        Physicians frequently dictate procedure notes and equipment usage.<br><br>
+        <strong>Diagnostic Procedures:</strong>
+        <ul>
+          <li>CBC – Complete Blood Count</li>
+          <li>ECG/EKG – Electrocardiogram</li>
+          <li>CT Scan, MRI, X-ray, Ultrasound (UTZ)</li>
+          <li>Biopsy, Urinalysis (UA), Blood Chemistry</li>
+          <li>Lumbar Puncture, Echocardiography</li>
+        </ul>
+        <strong>Therapeutic Procedures:</strong>
+        <ul>
+          <li>IV Fluid Therapy, Blood Transfusion, NGT Feeding</li>
+          <li>Intubation, Mechanical Ventilation, Oxygen Therapy</li>
+          <li>Dialysis (Hemodialysis &amp; Peritoneal), Nebulization</li>
+        </ul>
+        <strong>Equipment:</strong> Stethoscope, Sphygmomanometer, Pulse Oximeter, Defibrillator, Ventilator, Glucometer
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">TOPIC 04</div>
+      <div class="lesson-title">Common Surgical Procedures</div>
+      <div class="lesson-body">
+        Surgical operative notes are among the most complex documents, requiring precise technical terminology.<br><br>
+        <strong>General Surgery:</strong>
+        <ul>
+          <li>Appendectomy – removal of the appendix</li>
+          <li>Cholecystectomy – removal of the gallbladder (open or laparoscopic)</li>
+          <li>Herniorrhaphy – hernia repair</li>
+          <li>Colostomy/Ileostomy – creation of bowel opening</li>
+        </ul>
+        <strong>Orthopedic:</strong>
+        <ul>
+          <li>ORIF – Open Reduction Internal Fixation</li>
+          <li>THR/TKR – Total Hip/Knee Replacement</li>
+          <li>Arthroscopy – joint examination/repair</li>
+        </ul>
+        <strong>Cardiovascular:</strong>
+        <ul>
+          <li>CABG – Coronary Artery Bypass Grafting</li>
+          <li>Angioplasty, Pacemaker Insertion, Valve Replacement</li>
+        </ul>
+        <strong>OB-GYN:</strong> Cesarean Section (C-section), Hysterectomy, Dilatation &amp; Curettage (D&amp;C)
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">TOPIC 05</div>
+      <div class="lesson-title">W5-5S of File Management in MT</div>
+      <div class="lesson-body">
+        Proper file management ensures transcribed documents are organized, retrievable, and secure.<br><br>
+        <strong>The W5 of File Management:</strong>
+        <ul>
+          <li><strong>What</strong> – type of document (H&amp;P, Operative Note, Discharge Summary, Consult Letter)</li>
+          <li><strong>Who</strong> – patient name, attending physician, facility</li>
+          <li><strong>When</strong> – date and time of dictation and transcription (TAT tracking)</li>
+          <li><strong>Where</strong> – storage location (local drive, cloud storage, EHR/EMR system)</li>
+          <li><strong>Why</strong> – purpose, legal requirements, and retention policies</li>
+        </ul>
+        <strong>5S Workplace Principles:</strong>
+        <ul>
+          <li><strong>Sort</strong> – remove unnecessary files</li>
+          <li><strong>Set in Order</strong> – organize files logically</li>
+          <li><strong>Shine</strong> – maintain clean, updated records</li>
+          <li><strong>Standardize</strong> – consistent naming conventions and folder structures</li>
+          <li><strong>Sustain</strong> – maintain habits through regular audits</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">TOPIC 06</div>
+      <div class="lesson-title">MT Reference Materials &amp; Online Resources</div>
+      <div class="lesson-body">
+        Transcriptionists use reference materials to verify spellings, dosages, and medical terms during transcription.<br><br>
+        <strong>Essential References:</strong>
+        <ul>
+          <li><strong>Stedman's Medical Dictionary</strong> – comprehensive medical terminology</li>
+          <li><strong>Dorland's Illustrated Medical Dictionary</strong></li>
+          <li><strong>PDR (Physicians' Desk Reference)</strong> – drug information</li>
+          <li><strong>The Book of Style for Medical Transcription</strong> – AHDI style guide</li>
+          <li><strong>Taber's Cyclopedic Medical Dictionary</strong></li>
+        </ul>
+        <strong>Online Resources:</strong>
+        <ul>
+          <li>MedlinePlus (medlineplus.gov) – NLM patient and clinical info</li>
+          <li>Drugs.com – comprehensive drug database</li>
+          <li>Merriam-Webster Medical Dictionary (merriam-webster.com/medical)</li>
+          <li>AHDI (ahdionline.org) – professional standards and guidelines</li>
+          <li>WebMD, Mayo Clinic – clinical references</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">TOPIC 07</div>
+      <div class="lesson-title">Transcribing Audio Files in MT</div>
+      <div class="lesson-body">
+        The core practical skill — converting audio dictations into accurately formatted medical documents.<br><br>
+        <strong>Step-by-Step Process:</strong>
+        <ul>
+          <li>1. Load audio file into transcription software (e.g., Express Scribe)</li>
+          <li>2. Set playback speed (70–80% for beginners; 100% for experienced)</li>
+          <li>3. Use foot pedal to control play/pause/rewind hands-free</li>
+          <li>4. Type as you listen; pause and rewind as needed</li>
+          <li>5. Flag unclear dictations with blanks or comment markers</li>
+          <li>6. Proofread and run medical spellcheck on the final document</li>
+          <li>7. Format document per client/facility style guide</li>
+          <li>8. Save in required format and submit within TAT</li>
+        </ul>
+        <strong>Quality Benchmarks:</strong> 60–75 WPM typing speed with ≥98% accuracy
+      </div>
+    </div>
+    <div class="lesson-card reveal">
+      <div class="lesson-num">TOPIC 08</div>
+      <div class="lesson-title">Editing &amp; Revising Text in MT</div>
+      <div class="lesson-body">
+        Quality assurance involves careful editing and revision to ensure accuracy and compliance with style guidelines.<br><br>
+        <strong>Types of Editing:</strong>
+        <ul>
+          <li><strong>Verbatim transcription</strong> – transcribe exactly as dictated, including false starts</li>
+          <li><strong>Standard editing</strong> – correct obvious grammatical errors while retaining meaning</li>
+          <li><strong>Intelligent verbatim</strong> – remove filler words (um, uh, you know) while keeping full meaning</li>
+        </ul>
+        <strong>Proofreading Checklist:</strong>
+        <ul>
+          <li>✓ Correct patient demographics (name, DOB, MRN, date of service)</li>
+          <li>✓ Accurate drug names, dosages, and frequencies</li>
+          <li>✓ Consistent document formatting and section headings</li>
+          <li>✓ No blank fields left unflagged for QA review</li>
+          <li>✓ Proper punctuation, capitalization, and number formatting</li>
+          <li>✓ Correct use of medical abbreviations per style guide</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end lessons -->
+
+<!-- ANATOMY & PHYSIOLOGY -->
+<div id="anatomy" class="anat-sec">
+<section style="padding:76px 40px">
+  <div class="section-header reveal">
+    <span class="section-tag" style="color:var(--purple)">Supplemental Subject</span>
+    <h2 class="section-title" style="color:var(--purple)">Human Anatomy &amp; Physiology</h2>
+    <p class="section-desc">In-depth study of all 12 organ systems — main functions, key organs, conditions/disorders, treatments, and medical term dissections.</p>
+  </div>
+
+  <!-- NAV PILLS FOR SYSTEMS -->
+  <div style="display:flex;flex-wrap:wrap;gap:8px;max-width:1100px;margin:0 auto 48px;justify-content:center">
+    <a href="#sys-integumentary" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Integumentary</a>
+    <a href="#sys-skeletal" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Skeletal</a>
+    <a href="#sys-muscular" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Muscular</a>
+    <a href="#sys-nervous" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Nervous</a>
+    <a href="#sys-endocrine" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Endocrine</a>
+    <a href="#sys-cardiovascular" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Cardiovascular</a>
+    <a href="#sys-lymphatic" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Lymphatic</a>
+    <a href="#sys-respiratory" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Respiratory</a>
+    <a href="#sys-digestive" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Digestive</a>
+    <a href="#sys-urinary" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Urinary</a>
+    <a href="#sys-immune" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Immune</a>
+    <a href="#sys-reproductive" style="padding:6px 14px;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.4);border-radius:20px;color:var(--purple);font-size:0.72rem;font-family:'Space Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(155,93,229,0.3)'" onmouseout="this.style.background='rgba(155,93,229,0.15)'">Reproductive</a>
+  </div>
+
+  <!-- ═══ 1. INTEGUMENTARY ═══ -->
+  <div id="sys-integumentary" class="system-card reveal">
+    <div class="system-title">🧴 1. Integumentary System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The integumentary system forms the external covering of the body. It protects internal organs from physical injury, pathogens, UV radiation, and dehydration. It also regulates body temperature, provides sensory information, and synthesizes Vitamin D.</p>
+      <p><strong>Importance in MT:</strong> Skin conditions, wound documentation, burn classifications, and dermatology reports are frequently transcribed.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Epidermis</strong> – outermost layer; waterproof; contains keratinocytes and melanocytes</li>
+        <li><strong>Dermis</strong> – middle layer; contains collagen, blood vessels, hair follicles, and nerve endings</li>
+        <li><strong>Hypodermis (Subcutaneous layer)</strong> – deepest layer; fat and connective tissue for insulation</li>
+        <li><strong>Hair follicles</strong> – produce hair; found in the dermis</li>
+        <li><strong>Sebaceous glands</strong> – produce sebum (oil) to lubricate and waterproof skin</li>
+        <li><strong>Sweat glands (Eccrine &amp; Apocrine)</strong> – regulate temperature through perspiration</li>
+        <li><strong>Nails</strong> – protective plates of keratin on fingertips and toes</li>
+        <li><strong>Melanocytes</strong> – cells that produce melanin, the pigment that determines skin color</li>
+        <li><strong>Langerhans cells</strong> – immune cells in the epidermis; first defense against pathogens</li>
+        <li><strong>Merkel cells</strong> – sensory receptor cells in the epidermis; detect light touch</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Acne vulgaris</strong> – inflammation of sebaceous glands and hair follicles</li>
+        <li><strong>Psoriasis</strong> – chronic autoimmune condition causing red, scaly skin patches</li>
+        <li><strong>Eczema (Atopic Dermatitis)</strong> – chronic inflammatory skin condition with itching and redness</li>
+        <li><strong>Melanoma</strong> – malignant tumor of melanocytes; most dangerous skin cancer</li>
+        <li><strong>Basal cell carcinoma</strong> – most common skin cancer; arises from basal layer of epidermis</li>
+        <li><strong>Burns</strong> – classified as 1st (superficial), 2nd (partial thickness), 3rd (full thickness) degree</li>
+        <li><strong>Cellulitis</strong> – bacterial infection of the dermis and subcutaneous tissue</li>
+        <li><strong>Alopecia</strong> – hair loss, which may be localized or generalized</li>
+        <li><strong>Urticaria (Hives)</strong> – raised, itchy welts caused by allergic reaction</li>
+        <li><strong>Tinea (Ringworm/Athlete's Foot)</strong> – fungal infection of the skin</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>Topical corticosteroids (hydrocortisone cream) – reduce inflammation in eczema and psoriasis</li>
+        <li>Retinoids (tretinoin, isotretinoin) – treat acne and promote cell turnover</li>
+        <li>Antifungal agents (clotrimazole, fluconazole) – treat tinea infections</li>
+        <li>Antibiotics (amoxicillin, cephalexin) – treat bacterial skin infections like cellulitis</li>
+        <li>Antihistamines (diphenhydramine, cetirizine) – relieve urticaria and itching</li>
+        <li>Surgical excision – removal of skin cancers (melanoma, BCC)</li>
+        <li>Cryotherapy – freezing with liquid nitrogen to destroy abnormal tissue</li>
+        <li>Phototherapy (UV light therapy) – used for psoriasis and eczema</li>
+        <li>Wound debridement and skin grafting – treatment for severe burns</li>
+        <li>Biologics (dupilumab) – targeted therapy for moderate-to-severe atopic dermatitis</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Dermatitis</strong><br>Prefix: n/a | Combining form: dermat/o (skin) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of the skin</em></li>
+        <li><strong>Subcutaneous</strong><br>Prefix: sub- (under/below) | Combining form: cutane/o (skin) | Combining vowel: /o/ | Suffix: -ous (pertaining to) | <em>Meaning: pertaining to below the skin</em></li>
+        <li><strong>Melanoma</strong><br>Prefix: n/a | Combining form: melan/o (black/dark pigment) | Combining vowel: /o/ | Suffix: -oma (tumor/mass) | <em>Meaning: tumor of melanin-producing cells</em></li>
+        <li><strong>Onychomycosis</strong><br>Prefix: n/a | Combining form: onych/o (nail) + myc/o (fungus) | Combining vowel: /o/ | Suffix: -osis (abnormal condition) | <em>Meaning: abnormal fungal condition of the nail</em></li>
+        <li><strong>Erythroderma</strong><br>Prefix: n/a | Combining form: erythr/o (red) + derm/o (skin) | Combining vowel: /o/ | Suffix: -a (noun ending) | <em>Meaning: diffuse redness of the skin</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 2. SKELETAL ═══ -->
+  <div id="sys-skeletal" class="system-card reveal">
+    <div class="system-title">🦴 2. Skeletal System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The skeletal system provides structural support and framework for the body, protects vital organs, enables movement in conjunction with muscles, produces blood cells (hematopoiesis), and stores minerals such as calcium and phosphorus.</p>
+      <p><strong>Importance in MT:</strong> Orthopedic reports, fracture documentation, bone density studies, and joint procedures are highly common in transcription.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Skull (Cranium)</strong> – protects the brain; composed of 22 bones</li>
+        <li><strong>Vertebral Column</strong> – 33 vertebrae (7 cervical, 12 thoracic, 5 lumbar, 5 sacral fused, 4 coccygeal fused)</li>
+        <li><strong>Sternum</strong> – flat bone in the center of the chest; articulates with ribs</li>
+        <li><strong>Ribs</strong> – 24 ribs (12 pairs); protect the thoracic organs</li>
+        <li><strong>Femur</strong> – thigh bone; longest and strongest bone in the body</li>
+        <li><strong>Tibia &amp; Fibula</strong> – bones of the lower leg</li>
+        <li><strong>Humerus</strong> – upper arm bone; articulates with shoulder and elbow</li>
+        <li><strong>Radius &amp; Ulna</strong> – bones of the forearm</li>
+        <li><strong>Pelvis</strong> – bowl-shaped structure supporting abdominal organs; formed by ilium, ischium, and pubis</li>
+        <li><strong>Cartilage</strong> – flexible connective tissue at joint surfaces and in structures like nose, ears, and trachea</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Fracture</strong> – break in bone continuity; classified as simple, compound, comminuted, stress, etc.</li>
+        <li><strong>Osteoporosis</strong> – decreased bone density increasing fracture risk; common in postmenopausal women</li>
+        <li><strong>Osteoarthritis</strong> – degenerative joint disease; wearing down of articular cartilage</li>
+        <li><strong>Rheumatoid Arthritis</strong> – autoimmune inflammation of synovial joints</li>
+        <li><strong>Scoliosis</strong> – lateral curvature of the spine (S- or C-shaped)</li>
+        <li><strong>Osteomyelitis</strong> – infection of bone, usually bacterial (S. aureus)</li>
+        <li><strong>Bone cancer (Osteosarcoma)</strong> – malignant tumor of bone-forming cells</li>
+        <li><strong>Gout</strong> – uric acid crystal deposition in joints causing severe pain</li>
+        <li><strong>Dislocation</strong> – displacement of bone from its normal joint position</li>
+        <li><strong>Herniated disc</strong> – protrusion of intervertebral disc nucleus compressing spinal nerves</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>Cast or splint immobilization – used for fractures to allow bone healing</li>
+        <li>ORIF (Open Reduction Internal Fixation) – surgical alignment and fixation of fractured bones</li>
+        <li>Total Joint Replacement (THR/TKR) – replacement of damaged hip or knee joint</li>
+        <li>Calcium and Vitamin D supplementation – prevention and treatment of osteoporosis</li>
+        <li>Bisphosphonates (alendronate, risedronate) – slow bone loss in osteoporosis</li>
+        <li>NSAIDs (ibuprofen, naproxen) – reduce pain and inflammation in arthritis and gout</li>
+        <li>Corticosteroid injections – reduce joint inflammation in rheumatoid arthritis</li>
+        <li>Spinal fusion – surgical joining of vertebrae to treat severe scoliosis or herniated disc</li>
+        <li>Colchicine / Allopurinol – manage acute gout attacks and reduce uric acid levels</li>
+        <li>Physical therapy and rehabilitation – restore mobility and strength post-fracture or surgery</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Osteoporosis</strong><br>Prefix: n/a | Combining form: oste/o (bone) | Combining vowel: /o/ | Suffix: -porosis (porous condition) | <em>Meaning: porous/weakened condition of the bone</em></li>
+        <li><strong>Arthralgia</strong><br>Prefix: n/a | Combining form: arthr/o (joint) | Combining vowel: /o/ | Suffix: -algia (pain) | <em>Meaning: pain in a joint</em></li>
+        <li><strong>Osteomyelitis</strong><br>Prefix: n/a | Combining form: oste/o (bone) + myel/o (marrow) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of bone and bone marrow</em></li>
+        <li><strong>Chondromalacia</strong><br>Prefix: n/a | Combining form: chondr/o (cartilage) | Combining vowel: /o/ | Suffix: -malacia (softening) | <em>Meaning: softening of cartilage</em></li>
+        <li><strong>Spondylosis</strong><br>Prefix: n/a | Combining form: spondyl/o (vertebra/spine) | Combining vowel: /o/ | Suffix: -osis (abnormal condition) | <em>Meaning: degenerative condition of the vertebrae (spinal degeneration)</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 3. MUSCULAR ═══ -->
+  <div id="sys-muscular" class="system-card reveal">
+    <div class="system-title">🦾 3. Muscular System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The muscular system enables movement of the body and internal organs, maintains posture, produces body heat through metabolic activity, and pumps blood (cardiac muscle). Muscles work in antagonistic pairs — when one contracts (agonist), the opposing muscle relaxes (antagonist).</p>
+      <p><strong>Importance in MT:</strong> Musculoskeletal reports, physical therapy notes, and sports medicine documentation frequently involve muscle terminology.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Skeletal muscle</strong> – voluntary, striated; attached to bones via tendons (e.g., biceps, quadriceps)</li>
+        <li><strong>Smooth muscle</strong> – involuntary, non-striated; found in walls of hollow organs</li>
+        <li><strong>Cardiac muscle</strong> – involuntary, striated; found only in the heart</li>
+        <li><strong>Tendons</strong> – fibrous connective tissue connecting muscle to bone</li>
+        <li><strong>Trapezius</strong> – upper back and neck; moves and stabilizes the shoulder blade</li>
+        <li><strong>Deltoid</strong> – shoulder; arm abduction</li>
+        <li><strong>Rectus Abdominis</strong> – anterior abdominal wall; trunk flexion</li>
+        <li><strong>Quadriceps Femoris</strong> – anterior thigh (4 heads); knee extension</li>
+        <li><strong>Hamstrings</strong> – posterior thigh (3 muscles); knee flexion and hip extension</li>
+        <li><strong>Gastrocnemius</strong> – calf; plantarflexion of the foot</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Myalgia</strong> – muscle pain, often from overuse or infection</li>
+        <li><strong>Myositis</strong> – inflammation of skeletal muscle tissue</li>
+        <li><strong>Muscular Dystrophy</strong> – progressive genetic muscle weakness (Duchenne, Becker types)</li>
+        <li><strong>Fibromyalgia</strong> – widespread musculoskeletal pain with fatigue and sleep disturbances</li>
+        <li><strong>Rhabdomyolysis</strong> – rapid skeletal muscle breakdown releasing myoglobin; can cause renal failure</li>
+        <li><strong>Strain</strong> – overstretching or tearing of muscle or tendon fibers</li>
+        <li><strong>Tendinitis</strong> – inflammation of a tendon, commonly at the shoulder, elbow, or knee</li>
+        <li><strong>Myopathy</strong> – disease of muscle tissue affecting structure or function</li>
+        <li><strong>Contracture</strong> – permanent shortening of muscle or tendon causing reduced range of motion</li>
+        <li><strong>Compartment Syndrome</strong> – dangerous increase in pressure within a muscle compartment compromising blood flow</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>NSAIDs (ibuprofen, naproxen) – relieve muscle pain and inflammation</li>
+        <li>Muscle relaxants (cyclobenzaprine, baclofen) – reduce muscle spasm</li>
+        <li>RICE protocol (Rest, Ice, Compression, Elevation) – first aid for strains and sprains</li>
+        <li>Physical therapy – strengthen and rehabilitate injured muscles</li>
+        <li>Corticosteroid injections – reduce inflammation in tendinitis</li>
+        <li>Surgical fasciotomy – emergency release of compartment syndrome pressure</li>
+        <li>IV fluid resuscitation – flushes myoglobin from kidneys in rhabdomyolysis</li>
+        <li>Occupational therapy – helps patients with muscular dystrophy maintain function</li>
+        <li>Botulinum toxin (Botox) injections – used for spasticity and contractures</li>
+        <li>Gene therapy (emerging) – targeting genetic mutations in Duchenne Muscular Dystrophy</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Myopathy</strong><br>Prefix: n/a | Combining form: my/o (muscle) | Combining vowel: /o/ | Suffix: -pathy (disease) | <em>Meaning: disease of the muscle</em></li>
+        <li><strong>Rhabdomyolysis</strong><br>Prefix: n/a | Combining form: rhabd/o (rod-shaped) + my/o (muscle) | Combining vowel: /o/ | Suffix: -lysis (breakdown/destruction) | <em>Meaning: breakdown of skeletal muscle</em></li>
+        <li><strong>Tendinitis</strong><br>Prefix: n/a | Combining form: tendin/o (tendon) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of a tendon</em></li>
+        <li><strong>Myalgia</strong><br>Prefix: n/a | Combining form: my/o (muscle) | Combining vowel: /o/ | Suffix: -algia (pain) | <em>Meaning: pain of the muscle</em></li>
+        <li><strong>Bradykinesia</strong><br>Prefix: brady- (slow) | Combining form: kines/o (movement) | Combining vowel: /i/ | Suffix: -ia (condition) | <em>Meaning: condition of slow movement (seen in Parkinson's disease)</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 4. NERVOUS ═══ -->
+  <div id="sys-nervous" class="system-card reveal">
+    <div class="system-title">🧠 4. Nervous System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The nervous system detects and interprets sensory information, coordinates voluntary and involuntary body responses, regulates internal organ function, and enables higher cognitive functions including memory, thought, and emotion.</p>
+      <p><strong>Importance in MT:</strong> Neurology and neurosurgery reports involve complex terminology for brain conditions, spinal injuries, and neurological procedures.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Brain</strong> – control center; divided into cerebrum, cerebellum, and brainstem</li>
+        <li><strong>Spinal cord</strong> – relay pathway between brain and body; housed in vertebral column</li>
+        <li><strong>Cerebrum</strong> – largest brain region; controls voluntary movement, sensation, speech, memory</li>
+        <li><strong>Cerebellum</strong> – coordinates balance, posture, and fine motor movements</li>
+        <li><strong>Brainstem</strong> – controls basic life functions: breathing, heart rate, consciousness (midbrain, pons, medulla)</li>
+        <li><strong>Cranial nerves</strong> – 12 pairs; transmit sensory and motor signals to the head and neck</li>
+        <li><strong>Spinal nerves</strong> – 31 pairs; transmit signals between spinal cord and body</li>
+        <li><strong>Neurons</strong> – basic functional cells of the nervous system; transmit electrical signals</li>
+        <li><strong>Meninges</strong> – three protective membranes surrounding brain and spinal cord (dura mater, arachnoid, pia mater)</li>
+        <li><strong>Synapse</strong> – junction between neurons where neurotransmitters are released</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Stroke (CVA)</strong> – cerebrovascular accident; sudden loss of blood supply to brain tissue</li>
+        <li><strong>Transient Ischemic Attack (TIA)</strong> – temporary stroke-like symptoms; "mini-stroke"</li>
+        <li><strong>Epilepsy</strong> – recurrent seizures due to abnormal electrical brain activity</li>
+        <li><strong>Parkinson's Disease</strong> – progressive loss of dopamine-producing neurons; tremors, rigidity</li>
+        <li><strong>Alzheimer's Disease</strong> – progressive dementia with memory loss and cognitive decline</li>
+        <li><strong>Multiple Sclerosis (MS)</strong> – autoimmune demyelination of CNS nerve fibers</li>
+        <li><strong>Meningitis</strong> – inflammation of the meninges; bacterial or viral</li>
+        <li><strong>Guillain-Barré Syndrome</strong> – autoimmune attack on peripheral nerves; ascending paralysis</li>
+        <li><strong>Neuropathy</strong> – nerve damage causing pain, numbness, or weakness</li>
+        <li><strong>Concussion</strong> – mild traumatic brain injury from impact; temporary loss of function</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>tPA (tissue plasminogen activator) – clot-dissolving drug for ischemic stroke (within 3–4.5 hours)</li>
+        <li>Antiepileptic drugs (phenytoin, valproate, levetiracetam) – control seizures in epilepsy</li>
+        <li>Levodopa/Carbidopa – dopamine replacement therapy for Parkinson's Disease</li>
+        <li>Cholinesterase inhibitors (donepezil, rivastigmine) – slow cognitive decline in Alzheimer's</li>
+        <li>Disease-modifying therapies (interferons, natalizumab) – reduce MS relapse frequency</li>
+        <li>Antibiotics (cefotaxime, penicillin) – treat bacterial meningitis</li>
+        <li>IVIG (Intravenous Immunoglobulin) – used in Guillain-Barré Syndrome</li>
+        <li>Deep Brain Stimulation (DBS) – surgical implant for advanced Parkinson's Disease</li>
+        <li>Craniotomy / Neurosurgery – remove tumors, hematomas, or relieve spinal cord compression</li>
+        <li>Rehabilitation therapy (physical, occupational, speech) – post-stroke recovery</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Encephalitis</strong><br>Prefix: n/a | Combining form: encephal/o (brain) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of the brain</em></li>
+        <li><strong>Neuropathy</strong><br>Prefix: n/a | Combining form: neur/o (nerve) | Combining vowel: /o/ | Suffix: -pathy (disease) | <em>Meaning: disease of the nerves</em></li>
+        <li><strong>Meningitis</strong><br>Prefix: n/a | Combining form: mening/o (meninges) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of the meninges</em></li>
+        <li><strong>Hemiplegia</strong><br>Prefix: hemi- (half) | Combining form: pleg/o (paralysis) | Combining vowel: /o/ | Suffix: -ia (condition) | <em>Meaning: paralysis of one half (side) of the body</em></li>
+        <li><strong>Polyneuritis</strong><br>Prefix: poly- (many) | Combining form: neur/o (nerve) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of many nerves</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 5. ENDOCRINE ═══ -->
+  <div id="sys-endocrine" class="system-card reveal">
+    <div class="system-title">🔬 5. Endocrine System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The endocrine system regulates body functions through chemical messengers called hormones, which are secreted directly into the bloodstream by ductless glands. It controls metabolism, growth, reproduction, mood, and response to stress.</p>
+      <p><strong>Importance in MT:</strong> Endocrinology dictations frequently include hormone levels, gland disorders, and metabolic conditions like diabetes mellitus and thyroid disease.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Pituitary gland</strong> – "master gland"; secretes hormones that regulate other glands (GH, TSH, ACTH, FSH, LH, ADH, oxytocin)</li>
+        <li><strong>Thyroid gland</strong> – butterfly-shaped; produces T3, T4 (metabolism regulation) and calcitonin (calcium regulation)</li>
+        <li><strong>Parathyroid glands</strong> – 4 small glands behind thyroid; secrete PTH to raise blood calcium</li>
+        <li><strong>Adrenal glands</strong> – sit atop kidneys; cortex produces cortisol, aldosterone; medulla produces epinephrine and norepinephrine</li>
+        <li><strong>Pancreas (Islets of Langerhans)</strong> – alpha cells secrete glucagon; beta cells secrete insulin</li>
+        <li><strong>Pineal gland</strong> – produces melatonin; regulates sleep-wake cycles (circadian rhythm)</li>
+        <li><strong>Thymus</strong> – produces thymosin for T-cell maturation; most active in childhood</li>
+        <li><strong>Gonads (Ovaries/Testes)</strong> – produce estrogen/progesterone (ovaries) and testosterone (testes)</li>
+        <li><strong>Hypothalamus</strong> – brain region that links nervous and endocrine systems; releases releasing/inhibiting hormones</li>
+        <li><strong>Kidneys</strong> – endocrine role: produce erythropoietin (EPO) and renin; activate Vitamin D</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Diabetes Mellitus Type 1</strong> – autoimmune destruction of beta cells; absolute insulin deficiency</li>
+        <li><strong>Diabetes Mellitus Type 2</strong> – insulin resistance and relative insulin deficiency; most common type</li>
+        <li><strong>Hypothyroidism</strong> – underactive thyroid; low T3/T4; fatigue, weight gain, cold intolerance</li>
+        <li><strong>Hyperthyroidism (Graves' Disease)</strong> – overactive thyroid; weight loss, tachycardia, exophthalmos</li>
+        <li><strong>Cushing's Syndrome</strong> – excess cortisol; moon face, buffalo hump, hypertension, hyperglycemia</li>
+        <li><strong>Addison's Disease</strong> – adrenal insufficiency; low cortisol; fatigue, hypotension, hyperpigmentation</li>
+        <li><strong>Acromegaly</strong> – excess GH after growth plate closure; enlarged hands, feet, jaw</li>
+        <li><strong>Diabetes Insipidus</strong> – ADH deficiency; excessive urination and thirst</li>
+        <li><strong>Hyperparathyroidism</strong> – excess PTH; elevated blood calcium; kidney stones, bone loss</li>
+        <li><strong>Polycystic Ovary Syndrome (PCOS)</strong> – hormonal imbalance in women; irregular periods, excess androgens, cysts</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>Insulin therapy – essential for Type 1 DM; also used in Type 2 DM</li>
+        <li>Metformin – first-line oral antidiabetic for Type 2 DM</li>
+        <li>Levothyroxine (Synthroid) – thyroid hormone replacement for hypothyroidism</li>
+        <li>Propylthiouracil (PTU) / Methimazole – reduce thyroid hormone production in hyperthyroidism</li>
+        <li>Radioactive iodine (I-131) therapy – destroys overactive thyroid tissue</li>
+        <li>Hydrocortisone/Fludrocortisone – hormone replacement in Addison's Disease</li>
+        <li>Ketoconazole / surgical adrenalectomy – reduce cortisol in Cushing's Syndrome</li>
+        <li>Octreotide / transsphenoidal surgery – treat acromegaly</li>
+        <li>Desmopressin (DDAVP) – synthetic ADH for diabetes insipidus</li>
+        <li>Oral contraceptives / metformin – manage PCOS symptoms</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Hyperglycemia</strong><br>Prefix: hyper- (excessive/above normal) | Combining form: glyc/o (sugar/glucose) | Combining vowel: /o/ | Suffix: -emia (blood condition) | <em>Meaning: excessive sugar in the blood</em></li>
+        <li><strong>Hypothyroidism</strong><br>Prefix: hypo- (below/deficient) | Combining form: thyroid/o (thyroid gland) | Combining vowel: /o/ | Suffix: -ism (condition) | <em>Meaning: condition of underactive thyroid gland</em></li>
+        <li><strong>Adrenalectomy</strong><br>Prefix: n/a | Combining form: adrenal/o (adrenal gland) | Combining vowel: /o/ | Suffix: -ectomy (surgical removal) | <em>Meaning: surgical removal of the adrenal gland</em></li>
+        <li><strong>Pancreatitis</strong><br>Prefix: n/a | Combining form: pancreat/o (pancreas) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of the pancreas</em></li>
+        <li><strong>Hypocalcemia</strong><br>Prefix: hypo- (below/deficient) | Combining form: calc/o (calcium) | Combining vowel: /o/ | Suffix: -emia (blood condition) | <em>Meaning: deficient calcium in the blood</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 6. CARDIOVASCULAR ═══ -->
+  <div id="sys-cardiovascular" class="system-card reveal">
+    <div class="system-title">🫀 6. Cardiovascular System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The cardiovascular system circulates blood throughout the body via the heart and blood vessels, delivering oxygen, nutrients, hormones, and immune cells to tissues while removing carbon dioxide and metabolic waste products.</p>
+      <p><strong>Importance in MT:</strong> Cardiology is one of the most transcription-heavy specialties. Reports include ECG interpretations, catheterization procedures, cardiac surgery notes, and echo reports.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Heart</strong> – muscular pump with 4 chambers (RA, LA, RV, LV) and 4 valves (mitral, tricuspid, aortic, pulmonary)</li>
+        <li><strong>Aorta</strong> – largest artery; carries oxygenated blood from left ventricle to systemic circulation</li>
+        <li><strong>Coronary arteries</strong> – supply blood to the heart muscle itself (LAD, RCA, LCx)</li>
+        <li><strong>Pulmonary arteries</strong> – carry deoxygenated blood from right ventricle to the lungs</li>
+        <li><strong>Veins (Superior/Inferior Vena Cava)</strong> – return deoxygenated blood from body to right atrium</li>
+        <li><strong>Capillaries</strong> – microscopic vessels where oxygen/nutrient exchange with tissues occurs</li>
+        <li><strong>Arteries</strong> – thick-walled vessels carrying blood away from the heart</li>
+        <li><strong>Veins</strong> – thin-walled vessels with valves returning blood to the heart</li>
+        <li><strong>Sinoatrial (SA) Node</strong> – heart's natural pacemaker; generates electrical impulse</li>
+        <li><strong>Atrioventricular (AV) Node</strong> – delays impulse between atria and ventricles; coordinates contraction</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Hypertension</strong> – persistently elevated blood pressure (&gt;140/90 mmHg)</li>
+        <li><strong>Myocardial Infarction (MI)</strong> – heart attack; necrosis of heart muscle due to blocked coronary artery</li>
+        <li><strong>Congestive Heart Failure (CHF)</strong> – heart unable to pump sufficient blood; fluid buildup in lungs and body</li>
+        <li><strong>Atrial Fibrillation (AFib)</strong> – irregular, rapid atrial electrical activity; risk of stroke from clot formation</li>
+        <li><strong>Coronary Artery Disease (CAD)</strong> – atherosclerotic plaque buildup in coronary arteries; angina</li>
+        <li><strong>Deep Vein Thrombosis (DVT)</strong> – blood clot in deep vein, usually leg; risk of pulmonary embolism</li>
+        <li><strong>Aortic Aneurysm</strong> – abnormal dilation of the aortic wall; risk of rupture</li>
+        <li><strong>Cardiac Tamponade</strong> – fluid in pericardial sac compressing the heart</li>
+        <li><strong>Valvular Heart Disease</strong> – stenosis or regurgitation of heart valves (mitral, aortic)</li>
+        <li><strong>Peripheral Artery Disease (PAD)</strong> – atherosclerosis of peripheral arteries; limb ischemia</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>Antihypertensives (amlodipine, losartan, metoprolol, enalapril) – control blood pressure</li>
+        <li>Anticoagulants (warfarin, heparin, apixaban) – prevent clotting in AFib and DVT</li>
+        <li>Thrombolytics (streptokinase, tPA) – dissolve clots in acute MI and PE</li>
+        <li>Statins (atorvastatin, simvastatin) – lower LDL cholesterol; slow atherosclerosis</li>
+        <li>Aspirin / Clopidogrel – antiplatelet therapy to prevent MI recurrence</li>
+        <li>Percutaneous Coronary Intervention (PCI) / Angioplasty with stenting – open blocked coronary artery</li>
+        <li>CABG (Coronary Artery Bypass Grafting) – bypass blocked coronary arteries using grafts</li>
+        <li>Pacemaker / ICD insertion – regulate heart rate and prevent sudden cardiac death</li>
+        <li>Diuretics (furosemide) – remove excess fluid in CHF</li>
+        <li>Pericardiocentesis – drain pericardial fluid in cardiac tamponade</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Tachycardia</strong><br>Prefix: tachy- (fast) | Combining form: cardi/o (heart) | Combining vowel: /o/ | Suffix: -ia (condition) | <em>Meaning: condition of fast heart rate</em></li>
+        <li><strong>Atherosclerosis</strong><br>Prefix: n/a | Combining form: ather/o (fatty plaque) + scler/o (hardening) | Combining vowel: /o/ | Suffix: -osis (abnormal condition) | <em>Meaning: hardening of arteries due to fatty plaque buildup</em></li>
+        <li><strong>Cardiomegaly</strong><br>Prefix: n/a | Combining form: cardi/o (heart) | Combining vowel: /o/ | Suffix: -megaly (enlargement) | <em>Meaning: enlargement of the heart</em></li>
+        <li><strong>Bradycardia</strong><br>Prefix: brady- (slow) | Combining form: cardi/o (heart) | Combining vowel: /o/ | Suffix: -ia (condition) | <em>Meaning: condition of slow heart rate</em></li>
+        <li><strong>Angioplasty</strong><br>Prefix: n/a | Combining form: angi/o (vessel) | Combining vowel: /o/ | Suffix: -plasty (surgical repair/reshaping) | <em>Meaning: surgical repair/widening of a blood vessel</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 7. LYMPHATIC ═══ -->
+  <div id="sys-lymphatic" class="system-card reveal">
+    <div class="system-title">🫧 7. Lymphatic System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The lymphatic system maintains fluid balance by returning excess interstitial fluid to the bloodstream, supports immune defense through lymphocyte activation and antibody production, and absorbs dietary fats (as chyle) from the small intestine via lacteals.</p>
+      <p><strong>Importance in MT:</strong> Lymphadenopathy is one of the most common findings in clinical dictations. Oncology and immunology reports heavily involve this system.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Lymph nodes</strong> – bean-shaped filters of lymph; site of lymphocyte activation; clustered in neck, axilla, and groin</li>
+        <li><strong>Spleen</strong> – largest lymphatic organ; filters blood; destroys old RBCs; stores platelets</li>
+        <li><strong>Thymus</strong> – site of T-lymphocyte maturation; located in mediastinum; most active in childhood</li>
+        <li><strong>Bone marrow</strong> – produces all blood cells including B and T lymphocytes</li>
+        <li><strong>Tonsils</strong> – palatine, pharyngeal (adenoids), lingual; guard against inhaled/ingested pathogens</li>
+        <li><strong>Thoracic duct</strong> – largest lymph vessel; drains lower body and left upper body into left subclavian vein</li>
+        <li><strong>Right lymphatic duct</strong> – drains right arm and right side of head/neck</li>
+        <li><strong>Lymph capillaries</strong> – blind-ended vessels absorbing interstitial fluid in tissues</li>
+        <li><strong>Peyer's patches</strong> – lymphoid tissue in ileum; defense against gut pathogens</li>
+        <li><strong>Lacteals</strong> – specialized lymph capillaries in intestinal villi that absorb dietary fats (chyle)</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Lymphadenopathy</strong> – enlargement of lymph nodes; common in infection, inflammation, and malignancy</li>
+        <li><strong>Hodgkin's Lymphoma</strong> – cancer of lymphatic tissue characterized by Reed-Sternberg cells</li>
+        <li><strong>Non-Hodgkin's Lymphoma</strong> – heterogeneous group of lymphoid malignancies; more common than Hodgkin's</li>
+        <li><strong>Lymphedema</strong> – chronic swelling due to lymph fluid accumulation; primary or secondary (post-surgical)</li>
+        <li><strong>Splenomegaly</strong> – enlarged spleen; associated with infections, liver disease, blood disorders</li>
+        <li><strong>Tonsillitis</strong> – inflammation of tonsils; bacterial (Strep) or viral; may require tonsillectomy</li>
+        <li><strong>Infectious Mononucleosis</strong> – EBV infection; fatigue, sore throat, lymphadenopathy, splenomegaly</li>
+        <li><strong>HIV/AIDS</strong> – destroys CD4+ T-helper cells; progressive immune system failure</li>
+        <li><strong>Lymphangitis</strong> – inflammation of lymph vessels; often appears as red streaks on skin near wound</li>
+        <li><strong>Castleman Disease</strong> – rare benign tumor-like growth of lymph node tissue</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>Antibiotics (amoxicillin, penicillin) – treat bacterial tonsillitis and lymphangitis</li>
+        <li>CHOP chemotherapy (cyclophosphamide, doxorubicin, vincristine, prednisone) – treat lymphomas</li>
+        <li>Radiation therapy – used in Hodgkin's lymphoma treatment</li>
+        <li>Antiretrovirals (ARVs) – control HIV; ART (Antiretroviral Therapy) prevents progression to AIDS</li>
+        <li>Tonsillectomy &amp; Adenoidectomy – surgical removal for recurrent tonsillitis</li>
+        <li>Compression bandaging / lymphatic massage – manage lymphedema</li>
+        <li>Splenectomy – surgical removal of ruptured or diseased spleen</li>
+        <li>IVIG – used in immune deficiency disorders to supplement antibodies</li>
+        <li>Bone marrow transplant / Stem cell transplant – used in lymphoma and leukemia</li>
+        <li>Monoclonal antibodies (rituximab) – targeted B-cell therapy in non-Hodgkin's lymphoma</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Lymphadenopathy</strong><br>Prefix: n/a | Combining form: lymph/o (lymph) + aden/o (gland/node) | Combining vowel: /o/ | Suffix: -pathy (disease) | <em>Meaning: disease/enlargement of lymph nodes</em></li>
+        <li><strong>Splenomegaly</strong><br>Prefix: n/a | Combining form: splen/o (spleen) | Combining vowel: /o/ | Suffix: -megaly (enlargement) | <em>Meaning: enlargement of the spleen</em></li>
+        <li><strong>Lymphangitis</strong><br>Prefix: n/a | Combining form: lymphangi/o (lymph vessel) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of the lymph vessels</em></li>
+        <li><strong>Thymectomy</strong><br>Prefix: n/a | Combining form: thym/o (thymus) | Combining vowel: /o/ | Suffix: -ectomy (surgical removal) | <em>Meaning: surgical removal of the thymus gland</em></li>
+        <li><strong>Lymphocytosis</strong><br>Prefix: n/a | Combining form: lymph/o (lymph) + cyt/o (cell) | Combining vowel: /o/ | Suffix: -osis (abnormal increase) | <em>Meaning: abnormal increase in lymphocytes in the blood</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 8. RESPIRATORY ═══ -->
+  <div id="sys-respiratory" class="system-card reveal">
+    <div class="system-title">🫁 8. Respiratory System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The respiratory system facilitates gas exchange — delivering oxygen (O₂) from the air to the bloodstream and expelling carbon dioxide (CO₂) from the body. It also filters, warms, and humidifies inhaled air and aids in phonation (speech).</p>
+      <p><strong>Importance in MT:</strong> Pulmonology, critical care, and emergency medicine reports extensively involve respiratory terminology, ABG results, and ventilator settings.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Nasal cavity</strong> – filters, warms, and humidifies incoming air; lined with cilia and mucus</li>
+        <li><strong>Pharynx</strong> – throat; common passageway for air and food; divided into nasopharynx, oropharynx, laryngopharynx</li>
+        <li><strong>Larynx</strong> – "voice box"; contains vocal cords (true and false); epiglottis prevents aspiration</li>
+        <li><strong>Trachea</strong> – "windpipe"; ~12 cm long; reinforced by C-shaped cartilage rings</li>
+        <li><strong>Bronchi (Primary)</strong> – two main branches of trachea entering each lung</li>
+        <li><strong>Bronchioles</strong> – smaller airways within lung tissue; no cartilage; smooth muscle allows bronchoconstriction/dilation</li>
+        <li><strong>Alveoli</strong> – microscopic air sacs where gas exchange occurs; coated with surfactant to prevent collapse</li>
+        <li><strong>Lungs</strong> – right (3 lobes: upper, middle, lower) and left (2 lobes: upper, lower); surrounded by pleura</li>
+        <li><strong>Pleura</strong> – double-layered membrane surrounding each lung; visceral and parietal layers; pleural fluid reduces friction</li>
+        <li><strong>Diaphragm</strong> – primary muscle of respiration; contracts to increase thoracic volume and draw air in</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Pneumonia</strong> – infection and inflammation of lung parenchyma; bacterial, viral, or fungal</li>
+        <li><strong>Asthma</strong> – chronic inflammatory airway disease; episodic bronchospasm; wheezing and dyspnea</li>
+        <li><strong>COPD (Chronic Obstructive Pulmonary Disease)</strong> – emphysema and chronic bronchitis; irreversible airflow obstruction</li>
+        <li><strong>Tuberculosis (TB)</strong> – Mycobacterium tuberculosis infection of lungs; productive cough, hemoptysis, night sweats</li>
+        <li><strong>Pulmonary Embolism (PE)</strong> – blood clot in pulmonary artery; sudden dyspnea, chest pain, hypoxia</li>
+        <li><strong>Pleural Effusion</strong> – fluid accumulation in pleural space; compresses lung tissue</li>
+        <li><strong>Pneumothorax</strong> – air in pleural space; collapsed lung; may be spontaneous or traumatic</li>
+        <li><strong>Lung Cancer</strong> – most common: adenocarcinoma, squamous cell carcinoma, small cell carcinoma</li>
+        <li><strong>Respiratory Distress Syndrome (ARDS)</strong> – severe acute lung injury; widespread alveolar damage</li>
+        <li><strong>Sleep Apnea</strong> – recurrent upper airway obstruction during sleep; hypoxia; treated with CPAP</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>Bronchodilators (salbutamol/albuterol) – relax airway smooth muscle; relieve bronchospasm in asthma</li>
+        <li>Inhaled corticosteroids (budesonide, fluticasone) – reduce airway inflammation in asthma and COPD</li>
+        <li>Antibiotics (amoxicillin, azithromycin, levofloxacin) – treat bacterial pneumonia</li>
+        <li>Anti-TB drugs (RIPE: rifampicin, isoniazid, pyrazinamide, ethambutol) – 6-month regimen for TB</li>
+        <li>Anticoagulants (heparin, enoxaparin, warfarin) – treat and prevent pulmonary embolism</li>
+        <li>Thoracentesis – needle aspiration of pleural effusion</li>
+        <li>Chest tube insertion – drain pneumothorax or large pleural effusion</li>
+        <li>Mechanical ventilation / Intubation – support breathing in respiratory failure (ARDS, severe pneumonia)</li>
+        <li>CPAP / BiPAP – non-invasive positive pressure ventilation for sleep apnea and COPD</li>
+        <li>Oxygen therapy (O₂ via nasal cannula or mask) – correct hypoxemia in most respiratory conditions</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Pneumonia</strong><br>Prefix: n/a | Combining form: pneum/o (lung/air) | Combining vowel: /o/ | Suffix: -ia (condition) | <em>Meaning: condition of the lungs (with infection/inflammation)</em></li>
+        <li><strong>Bronchospasm</strong><br>Prefix: n/a | Combining form: bronch/o (bronchus) | Combining vowel: /o/ | Suffix: -spasm (sudden involuntary contraction) | <em>Meaning: sudden contraction of bronchial muscles</em></li>
+        <li><strong>Hemoptysis</strong><br>Prefix: n/a | Combining form: hem/o (blood) | Combining vowel: /o/ | Suffix: -ptysis (spitting) | <em>Meaning: spitting/coughing up blood from the lungs</em></li>
+        <li><strong>Laryngoscopy</strong><br>Prefix: n/a | Combining form: laryng/o (larynx/voice box) | Combining vowel: /o/ | Suffix: -scopy (visual examination) | <em>Meaning: visual examination of the larynx</em></li>
+        <li><strong>Dyspnea</strong><br>Prefix: dys- (difficult/painful) | Combining form: pne/o (breathing) | Combining vowel: /o/ | Suffix: -a (noun ending) | <em>Meaning: difficulty breathing</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 9. DIGESTIVE ═══ -->
+  <div id="sys-digestive" class="system-card reveal">
+    <div class="system-title">🫃 9. Digestive System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The digestive system breaks down ingested food into absorbable nutrients (carbohydrates, proteins, fats, vitamins, minerals, and water) that are transported to body cells for energy, growth, and repair. It also eliminates indigestible waste as feces.</p>
+      <p><strong>Importance in MT:</strong> Gastroenterology and surgery reports frequently involve GI endoscopy findings, surgical procedure notes, and hepatology reports.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Mouth (Oral Cavity)</strong> – mechanical digestion via teeth; chemical digestion via salivary amylase</li>
+        <li><strong>Esophagus</strong> – muscular tube; transports food via peristalsis; LES (lower esophageal sphincter) prevents reflux</li>
+        <li><strong>Stomach</strong> – stores and churns food; HCl and pepsin begin protein digestion; produces chyme</li>
+        <li><strong>Small intestine</strong> – ~6–7 m; major digestion and absorption site; three segments: duodenum, jejunum, ileum</li>
+        <li><strong>Large intestine (Colon)</strong> – ~1.5 m; absorbs water and electrolytes; forms feces; houses gut microbiome</li>
+        <li><strong>Liver</strong> – produces bile; detoxifies blood; metabolizes nutrients; stores glycogen and vitamins</li>
+        <li><strong>Gallbladder</strong> – stores and concentrates bile; releases it into duodenum when fat is present</li>
+        <li><strong>Pancreas</strong> – exocrine: digestive enzymes (amylase, lipase, proteases); endocrine: insulin, glucagon</li>
+        <li><strong>Rectum</strong> – stores feces before defecation; stretch receptors trigger defecation reflex</li>
+        <li><strong>Anus</strong> – external opening; internal (involuntary) and external (voluntary) sphincters control defecation</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>GERD</strong> – gastroesophageal reflux disease; chronic acid reflux due to LES dysfunction</li>
+        <li><strong>Peptic Ulcer Disease (PUD)</strong> – ulcers in stomach or duodenum; H. pylori or NSAID-related</li>
+        <li><strong>Appendicitis</strong> – inflammation of appendix; McBurney's point tenderness; treated by appendectomy</li>
+        <li><strong>Cholecystitis</strong> – gallbladder inflammation; usually from gallstones (cholelithiasis)</li>
+        <li><strong>Hepatitis (A, B, C)</strong> – viral liver inflammation; B and C can become chronic</li>
+        <li><strong>Cirrhosis</strong> – irreversible liver scarring; portal hypertension, ascites, esophageal varices</li>
+        <li><strong>Crohn's Disease</strong> – IBD; transmural inflammation anywhere in GI tract; skip lesions</li>
+        <li><strong>Ulcerative Colitis</strong> – IBD; mucosal inflammation limited to colon and rectum</li>
+        <li><strong>Colorectal Cancer</strong> – most arise from adenomatous polyps; CEA tumor marker; screened via colonoscopy</li>
+        <li><strong>Pancreatitis</strong> – inflammation of the pancreas; acute (gallstones/alcohol) or chronic</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>PPIs (omeprazole, pantoprazole) – reduce stomach acid; treat GERD and PUD</li>
+        <li>H. pylori eradication (triple therapy: amoxicillin + clarithromycin + PPI) – treat H. pylori-related ulcers</li>
+        <li>Appendectomy (laparoscopic or open) – surgical removal of inflamed appendix</li>
+        <li>Laparoscopic cholecystectomy – gold standard for cholecystitis and gallstones</li>
+        <li>Antiviral therapy (sofosbuvir, ledipasvir) – treat Hepatitis C; curative in most cases</li>
+        <li>Lactulose / Rifaximin – manage hepatic encephalopathy in cirrhosis</li>
+        <li>Aminosalicylates (mesalazine) + Corticosteroids – treat IBD flares</li>
+        <li>Biologics (infliximab, adalimumab) – treat moderate-to-severe Crohn's and UC</li>
+        <li>Colonoscopy with polypectomy – remove colorectal polyps before they become malignant</li>
+        <li>IV fluid + NPO + analgesics – initial management of acute pancreatitis</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Gastroenteritis</strong><br>Prefix: n/a | Combining form: gastr/o (stomach) + enter/o (intestine) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of the stomach and intestine</em></li>
+        <li><strong>Cholecystectomy</strong><br>Prefix: n/a | Combining form: chol/e (bile) + cyst/o (bladder/sac) | Combining vowel: /o/ | Suffix: -ectomy (surgical removal) | <em>Meaning: surgical removal of the gallbladder</em></li>
+        <li><strong>Hepatomegaly</strong><br>Prefix: n/a | Combining form: hepat/o (liver) | Combining vowel: /o/ | Suffix: -megaly (enlargement) | <em>Meaning: enlargement of the liver</em></li>
+        <li><strong>Colostomy</strong><br>Prefix: n/a | Combining form: col/o (colon) | Combining vowel: /o/ | Suffix: -stomy (creation of an opening) | <em>Meaning: surgical creation of an opening in the colon through the abdominal wall</em></li>
+        <li><strong>Cholelithiasis</strong><br>Prefix: n/a | Combining form: chol/e (bile) + lith/o (stone) | Combining vowel: /o/ | Suffix: -iasis (abnormal condition) | <em>Meaning: abnormal condition of stones in the bile/gallbladder</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 10. URINARY ═══ -->
+  <div id="sys-urinary" class="system-card reveal">
+    <div class="system-title">💧 10. Urinary System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The urinary system filters metabolic waste products from the blood, regulates fluid and electrolyte balance (sodium, potassium, chloride), controls blood pH, maintains blood pressure through renin-angiotensin-aldosterone system (RAAS), and excretes waste as urine.</p>
+      <p><strong>Importance in MT:</strong> Nephrology and urology reports include dialysis notes, kidney function tests (BUN, creatinine, GFR), and urological surgical procedures.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Kidneys (×2)</strong> – bean-shaped organs in the retroperitoneal space; filter ~180 L of blood daily</li>
+        <li><strong>Nephron</strong> – functional unit of the kidney; ~1 million per kidney; filters blood to produce urine</li>
+        <li><strong>Glomerulus</strong> – network of capillaries in Bowman's capsule; site of filtration</li>
+        <li><strong>Renal tubules</strong> – proximal convoluted tubule, loop of Henle, distal convoluted tubule; reabsorb and secrete solutes</li>
+        <li><strong>Collecting duct</strong> – final concentration of urine; responds to ADH (antidiuretic hormone)</li>
+        <li><strong>Renal pelvis</strong> – funnel-shaped cavity collecting urine from calyces before it enters the ureter</li>
+        <li><strong>Ureters (×2)</strong> – muscular tubes transporting urine from kidneys to bladder via peristalsis (~25–30 cm)</li>
+        <li><strong>Urinary bladder</strong> – hollow muscular organ storing urine (capacity ~400–600 mL); detrusor muscle contracts during micturition</li>
+        <li><strong>Urethra</strong> – tube from bladder to outside; female (~4 cm), male (~20 cm, also carries semen)</li>
+        <li><strong>Adrenal glands</strong> – sit atop kidneys; secrete aldosterone affecting fluid and electrolyte balance</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Urinary Tract Infection (UTI)</strong> – bacterial infection of bladder (cystitis) or kidneys (pyelonephritis)</li>
+        <li><strong>Nephrolithiasis (Kidney Stones)</strong> – calcium oxalate, uric acid, or struvite crystals in urinary tract</li>
+        <li><strong>Chronic Kidney Disease (CKD)</strong> – progressive loss of kidney function; staged by GFR (Stage 1–5)</li>
+        <li><strong>Acute Kidney Injury (AKI)</strong> – sudden decline in kidney function; elevated BUN and creatinine</li>
+        <li><strong>Nephrotic Syndrome</strong> – protein loss in urine; edema, hypoalbuminemia, hyperlipidemia</li>
+        <li><strong>Nephritic Syndrome</strong> – hematuria, hypertension, oliguria; glomerular inflammation</li>
+        <li><strong>Polycystic Kidney Disease (PKD)</strong> – genetic disorder; multiple cysts replace kidney tissue</li>
+        <li><strong>Bladder Cancer</strong> – most common: transitional cell carcinoma; painless hematuria</li>
+        <li><strong>Benign Prostatic Hyperplasia (BPH)</strong> – enlarged prostate obstructing urinary flow in males</li>
+        <li><strong>Urinary Incontinence</strong> – involuntary leakage of urine; stress, urge, or overflow types</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>Antibiotics (trimethoprim-sulfamethoxazole, nitrofurantoin, ciprofloxacin) – treat UTI and pyelonephritis</li>
+        <li>IV hydration + analgesics + alpha-blockers (tamsulosin) – facilitate passage of kidney stones</li>
+        <li>Lithotripsy (ESWL) – non-invasive shockwave fragmentation of kidney stones</li>
+        <li>Dialysis (Hemodialysis or Peritoneal) – renal replacement therapy in CKD Stage 5 (ESRD)</li>
+        <li>Kidney transplantation – definitive treatment for end-stage renal disease</li>
+        <li>ACE inhibitors (enalapril, lisinopril) – slow CKD progression and reduce proteinuria</li>
+        <li>Diuretics (furosemide, hydrochlorothiazide) – manage fluid overload in CKD and nephrotic syndrome</li>
+        <li>TURP (Transurethral Resection of the Prostate) – surgical treatment for BPH</li>
+        <li>5-alpha reductase inhibitors (finasteride) / Alpha-blockers (tamsulosin) – medical management of BPH</li>
+        <li>Cystoscopy with biopsy / intravesical BCG therapy – diagnose and treat bladder cancer</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Nephrolithiasis</strong><br>Prefix: n/a | Combining form: nephr/o (kidney) + lith/o (stone) | Combining vowel: /o/ | Suffix: -iasis (abnormal condition) | <em>Meaning: abnormal condition of kidney stones</em></li>
+        <li><strong>Cystitis</strong><br>Prefix: n/a | Combining form: cyst/o (bladder) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of the urinary bladder</em></li>
+        <li><strong>Hematuria</strong><br>Prefix: n/a | Combining form: hemat/o (blood) + ur/o (urine) | Combining vowel: /o/ | Suffix: -ia (condition) | <em>Meaning: condition of blood in the urine</em></li>
+        <li><strong>Pyelonephritis</strong><br>Prefix: n/a | Combining form: pyel/o (renal pelvis) + nephr/o (kidney) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of the renal pelvis and kidney (kidney infection)</em></li>
+        <li><strong>Ureteroscopy</strong><br>Prefix: n/a | Combining form: ureter/o (ureter) | Combining vowel: /o/ | Suffix: -scopy (visual examination) | <em>Meaning: visual examination of the ureter</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 11. IMMUNE ═══ -->
+  <div id="sys-immune" class="system-card reveal">
+    <div class="system-title">🛡️ 11. Immune System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The immune system defends the body against pathogens (bacteria, viruses, fungi, parasites), abnormal cells (cancer), and foreign substances. It involves physical barriers, innate (non-specific) immunity for immediate defense, and adaptive (specific) immunity for targeted, memory-based defense.</p>
+      <p><strong>Importance in MT:</strong> Immunology and infectious disease reports, allergy documentation, transplant rejection notes, and autoimmune disorder dictations are common in transcription.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>White blood cells (Leukocytes)</strong> – main cellular components; neutrophils, lymphocytes, monocytes, eosinophils, basophils</li>
+        <li><strong>B Lymphocytes (B cells)</strong> – produce antibodies (immunoglobulins); responsible for humoral immunity</li>
+        <li><strong>T Lymphocytes (T cells)</strong> – destroy infected or cancerous cells; responsible for cellular immunity; CD4+ (helper) and CD8+ (cytotoxic)</li>
+        <li><strong>Natural Killer (NK) cells</strong> – innate lymphocytes that destroy virus-infected and tumor cells</li>
+        <li><strong>Macrophages</strong> – phagocytic cells that engulf pathogens; present antigens to T cells</li>
+        <li><strong>Dendritic cells</strong> – antigen-presenting cells that activate T cells; link innate and adaptive immunity</li>
+        <li><strong>Antibodies (Immunoglobulins)</strong> – proteins produced by B cells; neutralize antigens (IgG, IgA, IgM, IgE, IgD)</li>
+        <li><strong>Complement system</strong> – cascade of proteins that lyse pathogens and enhance phagocytosis</li>
+        <li><strong>Cytokines</strong> – signaling proteins (interleukins, interferons, TNF) that regulate immune responses</li>
+        <li><strong>Skin and mucous membranes</strong> – first line of physical defense against pathogen entry</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>HIV/AIDS</strong> – Human Immunodeficiency Virus; destroys CD4+ T cells; leads to immunodeficiency</li>
+        <li><strong>Rheumatoid Arthritis (RA)</strong> – autoimmune attack on synovial joints; erosive joint destruction</li>
+        <li><strong>Systemic Lupus Erythematosus (SLE)</strong> – autoimmune multi-organ disease; butterfly rash, nephritis, arthritis</li>
+        <li><strong>Anaphylaxis</strong> – severe systemic allergic reaction; IgE-mediated; life-threatening hypotension and airway compromise</li>
+        <li><strong>Allergic Rhinitis</strong> – IgE-mediated nasal inflammation from airborne allergens</li>
+        <li><strong>Primary Immunodeficiency</strong> – congenital absence of immune components (e.g., SCID, DiGeorge syndrome)</li>
+        <li><strong>Sepsis</strong> – life-threatening systemic immune response to infection; SIRS criteria</li>
+        <li><strong>Graft-versus-Host Disease (GVHD)</strong> – donor immune cells attack recipient tissues after transplant</li>
+        <li><strong>Multiple Myeloma</strong> – malignant proliferation of plasma cells; excess abnormal antibody production</li>
+        <li><strong>Type 1 Diabetes Mellitus</strong> – autoimmune destruction of pancreatic beta cells</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>Antiretroviral therapy (ART) – suppress HIV viral load; prevent AIDS progression</li>
+        <li>DMARDs (methotrexate, hydroxychloroquine) – slow disease progression in RA and SLE</li>
+        <li>Biologics (adalimumab, etanercept, rituximab) – target specific immune mediators in autoimmune diseases</li>
+        <li>Corticosteroids (prednisone, methylprednisolone) – broad immunosuppression for acute flares</li>
+        <li>Epinephrine (adrenaline) auto-injector (EpiPen) – first-line emergency treatment for anaphylaxis</li>
+        <li>Antihistamines (diphenhydramine, cetirizine) – relieve mild allergic symptoms</li>
+        <li>IVIG (Intravenous Immunoglobulin) – replace antibodies in primary immunodeficiency</li>
+        <li>Vaccines – stimulate adaptive immunity; prevent infectious diseases</li>
+        <li>Immunosuppressants (tacrolimus, cyclosporine, mycophenolate) – prevent transplant rejection and manage GVHD</li>
+        <li>Broad-spectrum antibiotics + IV fluids + vasopressors – initial management of sepsis (Sepsis Bundles)</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Immunodeficiency</strong><br>Prefix: n/a | Combining form: immun/o (immune/protection) | Combining vowel: /o/ | Suffix: -deficiency (lack of) | <em>Meaning: lack of adequate immune protection</em></li>
+        <li><strong>Anaphylaxis</strong><br>Prefix: ana- (against/up) | Combining form: phylax/o (protection/guard) | Combining vowel: /o/ | Suffix: -is (condition) | <em>Meaning: condition of extreme immune over-reaction to a substance</em></li>
+        <li><strong>Autoimmune</strong><br>Prefix: auto- (self) | Combining form: immun/o (immune/protection) | Combining vowel: /o/ | Suffix: -e (adjective ending) | <em>Meaning: immune system directed against the body's own tissues</em></li>
+        <li><strong>Phagocytosis</strong><br>Prefix: n/a | Combining form: phag/o (to eat/engulf) + cyt/o (cell) | Combining vowel: /o/ | Suffix: -osis (process/condition) | <em>Meaning: process of cells engulfing and destroying foreign particles</em></li>
+        <li><strong>Immunoglobulin</strong><br>Prefix: n/a | Combining form: immun/o (immune) + globul/o (protein) | Combining vowel: /o/ | Suffix: -in (substance) | <em>Meaning: immune protein substance (antibody)</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 12. REPRODUCTIVE ═══ -->
+  <div id="sys-reproductive" class="system-card reveal">
+    <div class="system-title">🌸 12. Reproductive System</div>
+    <div class="system-body">
+      <p><strong>Main Function:</strong> The reproductive system is responsible for the production of offspring. It produces gametes (sperm and ova), provides the environment for fertilization and fetal development (female), and secretes sex hormones (estrogen, progesterone, testosterone) that regulate secondary sexual characteristics and reproductive cycles.</p>
+      <p><strong>Importance in MT:</strong> OB-GYN, urology, and fertility clinic reports are highly specialized dictation types involving detailed anatomical and procedural terminology.</p>
+      <h4>10 Key Organs / Structures</h4>
+      <ul>
+        <li><strong>Ovaries (×2)</strong> – female gonads; produce ova (eggs) and hormones (estrogen, progesterone)</li>
+        <li><strong>Fallopian tubes (Uterine tubes)</strong> – transport ova from ovaries to uterus; site of fertilization</li>
+        <li><strong>Uterus</strong> – hollow muscular organ for fetal development; three layers: endometrium, myometrium, perimetrium</li>
+        <li><strong>Cervix</strong> – lower narrow portion of uterus; opens during labor; Pap smear site</li>
+        <li><strong>Vagina</strong> – muscular canal from cervix to external genitalia; birth canal</li>
+        <li><strong>Testes (×2)</strong> – male gonads; produce spermatozoa and testosterone; located in the scrotum</li>
+        <li><strong>Epididymis</strong> – coiled tube on the posterior testes; site of sperm maturation and storage</li>
+        <li><strong>Vas deferens (Ductus deferens)</strong> – muscular tube carrying sperm from epididymis to ejaculatory duct</li>
+        <li><strong>Prostate gland</strong> – walnut-sized gland; produces prostatic fluid contributing to semen; surrounds urethra</li>
+        <li><strong>Seminal vesicles</strong> – produce fructose-rich fluid nourishing sperm; contribute ~60% of semen volume</li>
+      </ul>
+      <h4>10 Conditions / Disorders</h4>
+      <ul>
+        <li><strong>Polycystic Ovary Syndrome (PCOS)</strong> – hormonal imbalance; irregular menstruation, excess androgens, ovarian cysts</li>
+        <li><strong>Endometriosis</strong> – endometrial tissue outside the uterus; dysmenorrhea, infertility</li>
+        <li><strong>Uterine Fibroids (Leiomyoma)</strong> – benign smooth muscle tumors of the uterus; heavy menstrual bleeding</li>
+        <li><strong>Cervical Cancer</strong> – most associated with HPV infection; detected by Pap smear</li>
+        <li><strong>Ovarian Cancer</strong> – often asymptomatic until late stage; CA-125 tumor marker</li>
+        <li><strong>Ectopic Pregnancy</strong> – implantation outside the uterus (usually fallopian tube); medical emergency</li>
+        <li><strong>Prostate Cancer</strong> – most common cancer in men; PSA (prostate-specific antigen) screening</li>
+        <li><strong>Benign Prostatic Hyperplasia (BPH)</strong> – non-cancerous prostate enlargement; obstructive urinary symptoms</li>
+        <li><strong>Erectile Dysfunction (ED)</strong> – inability to achieve or maintain erection adequate for sexual activity</li>
+        <li><strong>Infertility</strong> – inability to conceive after 12 months of unprotected intercourse; male or female factor</li>
+      </ul>
+      <h4>10 Treatments</h4>
+      <ul>
+        <li>Oral contraceptive pills (OCPs) – regulate menstrual cycle; treat PCOS, endometriosis, and dysmenorrhea</li>
+        <li>Metformin + Clomiphene citrate – stimulate ovulation in PCOS</li>
+        <li>Laparoscopic excision/ablation – surgical treatment of endometriosis</li>
+        <li>Hysterectomy – surgical removal of uterus; treatment for fibroids, endometrial cancer, or refractory uterine conditions</li>
+        <li>HPV vaccine (Gardasil, Cervarix) + Pap smear screening – prevent and detect cervical cancer</li>
+        <li>Methotrexate (IM injection) / Salpingectomy – medical and surgical treatment of ectopic pregnancy</li>
+        <li>Radical prostatectomy / Radiation therapy – treat prostate cancer</li>
+        <li>Finasteride + Tamsulosin – medical management of BPH</li>
+        <li>PDE5 inhibitors (sildenafil/Viagra, tadalafil/Cialis) – treat erectile dysfunction</li>
+        <li>ART (Assisted Reproductive Technology): IVF, IUI – treat infertility in couples</li>
+      </ul>
+      <h4>Medical Term Dissections</h4>
+      <ul>
+        <li><strong>Dysmenorrhea</strong><br>Prefix: dys- (painful/difficult) | Combining form: men/o (menstruation/month) | Combining vowel: /o/ | Suffix: -rrhea (flow/discharge) | <em>Meaning: painful menstrual flow</em></li>
+        <li><strong>Hysterectomy</strong><br>Prefix: n/a | Combining form: hyster/o (uterus) | Combining vowel: /o/ | Suffix: -ectomy (surgical removal) | <em>Meaning: surgical removal of the uterus</em></li>
+        <li><strong>Orchitis</strong><br>Prefix: n/a | Combining form: orch/o (testis/testicle) | Combining vowel: /o/ | Suffix: -itis (inflammation) | <em>Meaning: inflammation of the testis</em></li>
+        <li><strong>Oophorectomy</strong><br>Prefix: n/a | Combining form: oophor/o (ovary) | Combining vowel: /o/ | Suffix: -ectomy (surgical removal) | <em>Meaning: surgical removal of the ovary</em></li>
+        <li><strong>Colposcopy</strong><br>Prefix: n/a | Combining form: colp/o (vagina) | Combining vowel: /o/ | Suffix: -scopy (visual examination) | <em>Meaning: visual examination of the vagina and cervix</em></li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<section id="contact">
+  <div class="section-header reveal">
+    <span class="section-tag">Get In Touch</span>
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-desc">Reach out to Group A for questions or feedback about this portfolio.</p>
+  </div>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <h3>Our Details</h3>
+      <p>Feel free to reach out to us for any inquiries about our Medical Transcription NC II portfolio for SY 2025–2026.</p>
+      <div class="contact-row"><div class="contact-icon">🏫</div><div><div class="contact-label">School</div><div class="contact-val">Angelo Levardo Loyola Senior High School</div></div></div>
+      <div class="contact-row"><div class="contact-icon">📚</div><div><div class="contact-label">Subject</div><div class="contact-val">Medical Transcription NC II</div></div></div>
+      <div class="contact-row"><div class="contact-icon">📅</div><div><div class="contact-label">School Year</div><div class="contact-val">2025 – 2026</div></div></div>
+      <div class="contact-row"><div class="contact-icon">👩‍🏫</div><div><div class="contact-label">Instructor</div><div class="contact-val">Roderick M. Mundoc</div></div></div>
+      <div class="contact-row"><div class="contact-icon">👥</div><div><div class="contact-label">Group</div><div class="contact-val">Group A · Leader: Rudinas, Clyde Dexter C.</div></div></div>
+    </div>
+    <div class="contact-form">
+      <div class="form-field"><label>Your Name</label><input type="text" placeholder="Enter your name"></div>
+      <div class="form-field"><label>Email Address</label><input type="email" placeholder="Enter your email"></div>
+      <div class="form-field"><label>Message</label><textarea placeholder="Write your message here..."></textarea></div>
+      <button class="submit-btn" onclick="alert('Thank you for your message!')">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Medical Transcription Portfolio</div>
+  <div class="footer-sub">© 2025–2026 · Group A · Angelo Levardo Loyola Senior High School · Medical Transcription NC II · Instructor: Roderick M. Mundoc</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+  document.querySelectorAll('.lessons-grid,.subtopic-grid,.overview-grid').forEach(grid => {
+    grid.querySelectorAll('.lesson-card,.overview-card').forEach((c,i) => c.style.transitionDelay = `${i*0.07}s`);
+  });
+</script>
+</body>
+</html>
